@@ -1,11 +1,23 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 ---
-
-<BaseLayout title="Hizmetler">
-  <h1>Hizmetler</h1>
-  <h2>Hizmet A</h2>
-  <p>Kapsam, teslimatlar, örnek çalışmalar.</p>
-  <h2>Hizmet B</h2>
-  <p>…</p>
+<BaseLayout
+  title="Hizmetler"
+  description="Satılık ve kiralık emlak hizmetleri, değerleme, danışmanlık ve daha fazlası."
+>
+  <h1>Hizmetlerimiz</h1>
+  <div class="services-list">
+    <article>
+      <h2>Satılık ve Kiralık Mülkler</h2>
+      <p>Aydın’da satılık ve kiralık daire, villa, arsa ve ticari mülk seçenekleri.</p>
+    </article>
+    <article>
+      <h2>Mülk Değerleme</h2>
+      <p>Uzman ekibimizle piyasa koşullarına göre doğru değerleme.</p>
+    </article>
+    <article>
+      <h2>Danışmanlık ve Yatırım</h2>
+      <p>Yatırımcılar için kapsamlı danışmanlık hizmeti.</p>
+    </article>
+  </div>
 </BaseLayout>

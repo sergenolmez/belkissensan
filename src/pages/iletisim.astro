@@ -1,11 +1,28 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 export let title: string = "İletişim";
-export let description: string = "Bize ulaşın";
+export let description: string = "Aydın Emlak ile iletişime geçin. Adres, telefon ve e-posta bilgilerimiz.";
 ---
-
 <BaseLayout title={title} description={description}>
   <h1>İletişim</h1>
-  <p>E-posta: <a href="mailto:info@ornek.com">info@ornek.com</a></p>
-  <p>Telefon: +90 555 555 55 55</p>
+  <div class="contact-info">
+    <p><strong>Adres:</strong> [Adresinizi buraya girin]</p>
+    <p><strong>Telefon:</strong> <a href="tel:+900000000000">+90 000 000 00 00</a></p>
+    <p><strong>E-posta:</strong> <a href="mailto:info@aydin-emlak.com">info@aydin-emlak.com</a></p>
+  </div>
+  <section class="contact-form">
+    <h2>İletişim Formu</h2>
+    <form action="#" method="POST">
+      <label for="name">Ad Soyad</label>
+      <input type="text" id="name" name="name" required />
+
+      <label for="email">E-posta</label>
+      <input type="email" id="email" name="email" required />
+
+      <label for="message">Mesajınız</label>
+      <textarea id="message" name="message" rows="5" required></textarea>
+
+      <button type="submit" class="btn-primary">Gönder</button>
+    </form>
+  </section>
 </BaseLayout>

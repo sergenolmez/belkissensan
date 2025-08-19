@@ -1,32 +1,57 @@
 ---
 import SeoHead from "../components/SeoHead.astro";
-
 const { title = "Anasayfa", description } = Astro.props;
 ---
-
 <html lang="tr">
   <head>
-    <SeoHead title={`Ad Soyad | ${title}`} description={description} />
-    <link rel="icon" href="/favicon.svg" />
+    <SeoHead title={`Aydın Emlak – ${title}`} description={description} />
+    <link rel="icon" href="/assets/img/logo.svg" />
+    <link rel="stylesheet" href="/assets/css/style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
-    <header style="padding:16px 0; border-bottom:1px solid #eee;">
-      <nav style="display:flex; gap:16px;">
-        <a href="/">Ana Sayfa</a>
-        <a href="/hakkimizda">Hakkımızda</a>
-        <a href="/hizmetler">Hizmetler</a>
-        <a href="/iletisim">İletişim</a>
+    <header class="site-header">
+      <nav class="navbar">
+        <a href="/" class="logo">
+          <img src="/assets/img/logo.svg" alt="Aydın Emlak Logo" />
+        </a>
+        <button class="menu-toggle" aria-label="Menüyü Aç/Kapat">&#9776;</button>
+        <ul class="nav-links">
+          <li>
+            <a href="/" class={Astro.url.pathname === "/" ? "active" : ""}>
+              Anasayfa
+            </a>
+          </li>
+          <li>
+            <a href="/hizmetler" class={Astro.url.pathname.startsWith("/hizmetler") ? "active" : ""}>
+              Hizmetler
+            </a>
+          </li>
+          <li>
+            <a href="/hakkimizda" class={Astro.url.pathname.startsWith("/hakkimizda") ? "active" : ""}>
+              Hakkımızda
+            </a>
+          </li>
+          <li>
+            <a href="/iletisim" class={Astro.url.pathname.startsWith("/iletisim") ? "active" : ""}>
+              İletişim
+            </a>
+          </li>
+        </ul>
       </nav>
     </header>
 
-    <main style="max-width:960px; margin:32px auto; padding:0 16px;">
+    <main class="page-content">
       <slot />
     </main>
 
-    <footer
-      style="padding:24px 0; border-top:1px solid #eee; text-align:center;"
-    >
-      © {new Date().getFullYear()} Ad Soyad — Tüm hakları saklıdır.
+    <footer class="site-footer">
+      <p>&copy; {new Date().getFullYear()} Aydın Emlak. Tüm hakları saklıdır.</p>
     </footer>
+
+    <script src="/assets/js/script.js" is:inline></script>
   </body>
 </html>

@@ -1,16 +1,33 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 ---
-
 <BaseLayout
-  title="Ana Sayfa"
-  description="Kurumsal kişisel web siteme hoş geldiniz."
+  title="Profesyonel Gayrimenkul Danışmanlığı"
+  description="Aydın'da güvenilir emlak hizmetleri."
 >
-  <h1>Merhaba, ben Ad Soyad</h1>
-  <p>Alanım: Danışmanlık / Yazılım / Mimarlık ...</p>
-  <ul>
-    <li>10+ yıl deneyim</li>
-    <li>Kurumsal referanslar</li>
-    <li>Uzmanlık: ...</li>
-  </ul>
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Aydın’da Güvenilir Emlak Hizmetleri</h1>
+      <p>Aydın Emlak ile hayalinizdeki mülkü bulun. Profesyonel danışmanlık, geniş portföy ve şeffaf hizmet.</p>
+      <a href="/hizmetler" class="btn-primary">Hizmetlerimizi Keşfedin</a>
+    </div>
+    <div class="hero-image">
+      <!-- <img src="/assets/img/hero.jpg" alt="Aydın Emlak" /> -->
+    </div>
+  </section>
+
+  <section class="features">
+    <div class="feature">
+      <h3>Geniş Portföy</h3>
+      <p>Aydın ve çevresinde geniş mülk seçenekleriyle aradığınızı kolayca bulun.</p>
+    </div>
+    <div class="feature">
+      <h3>Profesyonel Danışmanlık</h3>
+      <p>Alanında uzman ekibimizle yatırımınız için doğru adımları atın.</p>
+    </div>
+    <div class="feature">
+      <h3>Hızlı İşlem</h3>
+      <p>Tüm süreçlerde hızlı ve şeffaf hizmet anlayışı.</p>
+    </div>
+  </section>
 </BaseLayout>

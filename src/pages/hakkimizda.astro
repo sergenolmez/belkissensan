@@ -1,8 +1,26 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 ---
+<BaseLayout
+  title="Hakkımızda"
+  description="Aydın Emlak hakkında bilgi edinin. Misyonumuz, vizyonumuz ve ekibimiz."
+>
+  <h1>Hakkımızda</h1>
+  <p>Aydın Emlak, gayrimenkul sektöründe uzun yıllara dayanan tecrübesiyle müşterilerine güvenilir ve profesyonel hizmet sunar. Misyonumuz, her müşterinin ihtiyaçlarına özel çözümler sağlayarak memnuniyetlerini en üst seviyeye çıkarmaktır.</p>
 
-<BaseLayout title="Hakkımızda">
-  <h1>Hakkımda</h1>
-  <p>Kısa biyografi, misyon & vizyon, değerler.</p>
+  <section class="team">
+    <h2>Ekibimiz</h2>
+    <div class="team-members">
+      <div class="team-member">
+        <img src="/assets/img/team-member1.jpg" alt="Danışman 1" />
+        <h3>Danışman Adı 1</h3>
+        <p>Gayrimenkul Danışmanı</p>
+      </div>
+      <div class="team-member">
+        <img src="/assets/img/team-member2.jpg" alt="Danışman 2" />
+        <h3>Danışman Adı 2</h3>
+        <p>Müşteri İlişkileri Uzmanı</p>
+      </div>
+    </div>
+  </section>
 </BaseLayout>
