@@ -1,0 +1,26 @@
+---
+const { currentPath = '/' } = Astro.props;
+const links = [
+  { href: '/', label: 'Anasayfa' },
+  { href: '/hizmetler', label: 'Hizmetler' },
+  { href: '/hakkimizda', label: 'Hakkımızda' },
+  { href: '/iletisim', label: 'İletişim' }
+];
+---
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="/" class="logo">
+      <img src="/assets/img/logo.svg" alt="Aydın Emlak Logo" />
+    </a>
+    <button class="menu-toggle" aria-label="Menüyü Aç/Kapat">&#9776;</button>
+    <nav>
+      <ul class="nav-links">
+        {links.map(link => (
+          <li>
+            <a href={link.href} class={currentPath === link.href ? 'active' : ''}>{link.label}</a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  </div>
+</header>
