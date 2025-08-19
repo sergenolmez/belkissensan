@@ -1,6 +1,9 @@
 ---
 import SeoHead from "../components/SeoHead.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
 const { title = "Anasayfa", description } = Astro.props;
+const currentPath = Astro.url.pathname;
 ---
 <html lang="tr">
   <head>
@@ -13,45 +16,11 @@ const { title = "Anasayfa", description } = Astro.props;
     />
   </head>
   <body>
-    <header class="site-header">
-      <nav class="navbar">
-        <a href="/" class="logo">
-          <img src="/assets/img/logo.svg" alt="Aydın Emlak Logo" />
-        </a>
-        <button class="menu-toggle" aria-label="Menüyü Aç/Kapat">&#9776;</button>
-        <ul class="nav-links">
-          <li>
-            <a href="/" class={Astro.url.pathname === "/" ? "active" : ""}>
-              Anasayfa
-            </a>
-          </li>
-          <li>
-            <a href="/hizmetler" class={Astro.url.pathname.startsWith("/hizmetler") ? "active" : ""}>
-              Hizmetler
-            </a>
-          </li>
-          <li>
-            <a href="/hakkimizda" class={Astro.url.pathname.startsWith("/hakkimizda") ? "active" : ""}>
-              Hakkımızda
-            </a>
-          </li>
-          <li>
-            <a href="/iletisim" class={Astro.url.pathname.startsWith("/iletisim") ? "active" : ""}>
-              İletişim
-            </a>
-          </li>
-        </ul>
-      </nav>
-    </header>
-
+    <Header currentPath={currentPath} />
     <main class="page-content">
       <slot />
     </main>
-
-    <footer class="site-footer">
-      <p>&copy; {new Date().getFullYear()} Aydın Emlak. Tüm hakları saklıdır.</p>
-    </footer>
-
+    <Footer />
     <script src="/assets/js/script.js" is:inline></script>
   </body>
 </html>
