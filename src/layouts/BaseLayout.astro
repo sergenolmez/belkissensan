@@ -1,0 +1,32 @@
+---
+import SeoHead from "../components/SeoHead.astro";
+
+const { title = "Anasayfa", description } = Astro.props;
+---
+
+<html lang="tr">
+  <head>
+    <SeoHead title={`Ad Soyad | ${title}`} description={description} />
+    <link rel="icon" href="/favicon.svg" />
+  </head>
+  <body>
+    <header style="padding:16px 0; border-bottom:1px solid #eee;">
+      <nav style="display:flex; gap:16px;">
+        <a href="/">Ana Sayfa</a>
+        <a href="/hakkimizda">Hakkımızda</a>
+        <a href="/hizmetler">Hizmetler</a>
+        <a href="/iletisim">İletişim</a>
+      </nav>
+    </header>
+
+    <main style="max-width:960px; margin:32px auto; padding:0 16px;">
+      <slot />
+    </main>
+
+    <footer
+      style="padding:24px 0; border-top:1px solid #eee; text-align:center;"
+    >
+      © {new Date().getFullYear()} Ad Soyad — Tüm hakları saklıdır.
+    </footer>
+  </body>
+</html>
