@@ -1,26 +1,369 @@
 ---
-const { currentPath = '/' } = Astro.props;
-const links = [
-  { href: '/', label: 'Anasayfa' },
-  { href: '/hizmetler', label: 'Hizmetler' },
-  { href: '/hakkimizda', label: 'Hakkımızda' },
-  { href: '/iletisim', label: 'İletişim' }
+const { currentPath = "/" } = Astro.props;
+interface NavLink {
+  href: string;
+  label: string;
+}
+const links: NavLink[] = [
+  { href: "/", label: "Anasayfa" },
+  { href: "/hakkimizda", label: "Hakkımızda" },
+  { href: "/hizmetler", label: "Hizmetler" },
+  { href: "/yorumlar", label: "Yorumlar" },
+  { href: "/iletisim", label: "İletişim" },
 ];
 ---
-<header class="site-header">
+
+<header class="site-header" data-header>
   <div class="container header-inner">
-    <a href="/" class="logo">
-      <img src="/assets/img/logo.svg" alt="Aydın Emlak Logo" />
+    <a href="/" class="logo" aria-label="Logo – Anasayfa">
+      <img src="/assets/img/belkis-sensan-logo.png" alt="Aydın Emlak Logo" />
     </a>
-    <button class="menu-toggle" aria-label="Menüyü Aç/Kapat">&#9776;</button>
-    <nav>
-      <ul class="nav-links">
-        {links.map(link => (
-          <li>
-            <a href={link.href} class={currentPath === link.href ? 'active' : ''}>{link.label}</a>
-          </li>
-        ))}
+    <nav class="nav" aria-label="Ana menü">
+      <button
+        class="menu-toggle"
+        aria-label="Menüyü aç"
+        aria-expanded="false"
+        aria-controls="primary-navigation"
+        data-menu-button
+      >
+        <span class="burger" aria-hidden="true">
+          <span></span><span></span><span></span>
+        </span>
+        <span class="visually-hidden">Menü</span>
+      </button>
+      <div class="nav-overlay" data-nav-overlay></div>
+      <ul id="primary-navigation" class="nav-links" data-nav-list>
+        <li class="mobile-logo">
+          <a href="/" class="mobile-logo-link" aria-label="Anasayfa">
+            <img
+              src="/assets/img/belkis-sensan-logo.png"
+              alt="Aydın Emlak Logo"
+            />
+          </a>
+        </li>
+        {
+          links.map((link) => {
+            const active = currentPath === link.href;
+            return (
+              <li>
+                <a
+                  href={link.href}
+                  class={"nav-link" + (active ? " active" : "") + ""}
+                  aria-current={active ? "page" : undefined}
+                >
+                  {link.label}
+                </a>
+              </li>
+            );
+          })
+        }
+        <div class="header-actions">
+          <a
+            target="_blank"
+            rel="noopener noreferrer nofollow"
+            href="https://www.remax.com.tr/danisman/30281/belkis-sensan"
+            class="btn btn-secondary">Portföy</a
+          >
+        </div>
       </ul>
     </nav>
   </div>
 </header>
+
+<style is:global>
+  /* Accessible helper */
+  .visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+    border: 0;
+  }
+  /* Header upgrade */
+  .site-header {
+    backdrop-filter: blur(8px);
+    background: rgba(255, 255, 255, 0.8);
+    transition:
+      box-shadow 0.3s ease,
+      background 0.3s ease;
+    /* Overlap hero ile çalışması için sabit konum + yükseklik değişkeni */
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1200;
+    /* Varsayılan yükseklik (içerik dolunca JS ile güncellenecek) */
+    --header-height: 84px;
+  }
+  body {
+    /* Header yüksekliğini global root değişkenine aynala (progressive enhancement) */
+    --header-height: var(--header-height, 84px);
+  }
+  .site-header.scrolled {
+    box-shadow: 0 4px 12px -4px rgba(0, 0, 0, 0.12);
+    background: rgba(255, 255, 255, 0.9);
+  }
+  .nav {
+    position: relative;
+  }
+  .menu-toggle {
+    display: none; /* Desktop'ta gizli */
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    background: transparent;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 10px;
+    cursor: pointer;
+    transition:
+      background 0.3s,
+      border-color 0.3s;
+    position: relative; /* z-index etkili olsun */
+    z-index: 1103; /* panel ve overlay'in üstünde kalsın */
+  }
+  .menu-toggle:hover {
+    background: rgba(0, 0, 0, 0.05);
+  }
+  .burger {
+    position: relative;
+    width: 22px;
+    height: 18px;
+    display: inline-block;
+  }
+  .burger span {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--dark-color);
+    border-radius: 2px;
+    transition:
+      transform 0.45s cubic-bezier(0.68, -0.55, 0.27, 1.55),
+      top 0.25s 0.15s,
+      opacity 0.3s;
+  }
+  .burger span:nth-child(1) {
+    top: 0;
+  }
+  .burger span:nth-child(2) {
+    top: 8px;
+  }
+  .burger span:nth-child(3) {
+    top: 16px;
+  }
+  .menu-toggle[aria-expanded="true"] .burger span:nth-child(1) {
+    top: 8px;
+    transform: rotate(45deg);
+  }
+  .menu-toggle[aria-expanded="true"] .burger span:nth-child(2) {
+    opacity: 0;
+  }
+  .menu-toggle[aria-expanded="true"] .burger span:nth-child(3) {
+    top: 8px;
+    transform: rotate(-45deg);
+  }
+  /* Desktop nav links baseline refinement */
+  .nav-links {
+    list-style: none;
+    display: flex;
+    gap: 1.75rem;
+    margin: 0;
+    padding: 0;
+    align-items: center;
+  }
+  .nav-link {
+    position: relative;
+    text-decoration: none;
+    font-weight: 600;
+    color: var(--dark-color);
+    padding: 0.35rem 0;
+    display: inline-block;
+  }
+  .nav-link::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(
+      90deg,
+      var(--primary-color),
+      var(--secondary-color)
+    );
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s cubic-bezier(0.65, 0.05, 0.36, 1);
+    border-radius: 2px;
+  }
+  .nav-link:hover::after,
+  .nav-link.active::after {
+    transform: scaleX(1);
+  }
+
+  /* Desktop'ta mobil logoyu gizle */
+  .mobile-logo {
+    display: none;
+  }
+
+  /* Mobile panel */
+  @media (max-width: 900px) {
+    .nav-links {
+      --panel-w: min(84%, 320px);
+      position: fixed;
+      top: 0;
+      right: 0;
+      height: 100dvh;
+      flex-direction: column;
+      padding: 3rem 2.25rem 2.5rem;
+      background: linear-gradient(165deg, #fff 0%, #f5f7fb 60%, #eef3ff 100%);
+      box-shadow: -4px 0 18px -4px rgba(0, 0, 0, 0.08);
+      transform: translateX(110%);
+      transition: transform 0.55s cubic-bezier(0.68, -0.55, 0.27, 1.35);
+      overflow-y: auto;
+      scrollbar-width: none;
+      width: var(--panel-w);
+      will-change: transform;
+      z-index: 1102; /* overlay'in üstünde */
+    }
+    .mobile-logo {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 2rem;
+    }
+    .mobile-logo-link {
+      display: inline-block;
+    }
+    .mobile-logo img {
+      height: 40px;
+
+      width: auto;
+      object-fit: contain;
+    }
+    .nav-links::-webkit-scrollbar {
+      display: none;
+    }
+    .nav-links.open {
+      transform: translateX(0);
+    }
+    .nav-link {
+      font-size: 1.05rem;
+    }
+    .menu-toggle {
+      display: flex;
+    }
+    .nav-overlay {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: rgba(17, 24, 39, 0.35);
+      backdrop-filter: blur(2px);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.4s;
+      z-index: 1100; /* en altta overlay */
+    }
+    .nav-overlay.show {
+      opacity: 1;
+      pointer-events: auto;
+    }
+  }
+  /* Reduce motion preference */
+  @media (prefers-reduced-motion: reduce) {
+    .burger span,
+    .nav-links,
+    .nav-link::after {
+      transition: none !important;
+    }
+  }
+</style>
+
+<script is:inline>
+  (function () {
+    const header = document.querySelector("[data-header]");
+    const btn = header && header.querySelector("[data-menu-button]");
+    const navList = header && header.querySelector("[data-nav-list]");
+    const overlay = header && header.querySelector("[data-nav-overlay]");
+    const focusableSelector = "a[href], button:not([disabled])";
+    let lastFocused = null;
+    const trap = (e) => {
+      if (!navList || !navList.classList.contains("open")) return;
+      if (e.key === "Escape") {
+        toggle(false);
+        if (btn) btn.focus();
+      }
+      if (e.key === "Tab") {
+        const items = Array.from(navList.querySelectorAll(focusableSelector));
+        if (items.length === 0) return;
+        const first = items[0];
+        const last = items[items.length - 1];
+        if (e.shiftKey && document.activeElement === first) {
+          e.preventDefault();
+          last.focus();
+        } else if (!e.shiftKey && document.activeElement === last) {
+          e.preventDefault();
+          first.focus();
+        }
+      }
+    };
+    function toggle(force) {
+      const willOpen =
+        typeof force === "boolean"
+          ? force
+          : !(navList && navList.classList.contains("open"));
+      if (!btn || !navList || !overlay) return;
+      btn.setAttribute("aria-expanded", String(willOpen));
+      navList.classList.toggle("open", willOpen);
+      overlay.classList.toggle("show", willOpen);
+      document.body.classList.toggle("no-scroll", willOpen);
+      if (willOpen) {
+        lastFocused = document.activeElement;
+        const firstLink = navList.querySelector("a");
+        if (firstLink) firstLink.focus();
+        window.addEventListener("keydown", trap, true);
+      } else {
+        window.removeEventListener("keydown", trap, true);
+        if (lastFocused && lastFocused.focus) lastFocused.focus();
+      }
+    }
+    if (btn) btn.addEventListener("click", () => toggle());
+    // Link'e tıklayınca menüyü kapat (mobil)
+    if (navList) {
+      navList.addEventListener("click", (e) => {
+        const a = e.target.closest("a");
+        if (!a) return;
+        if (window.matchMedia("(max-width: 900px)").matches) {
+          toggle(false);
+        }
+      });
+    }
+    if (overlay) overlay.addEventListener("click", () => toggle(false));
+    // Ekran yeniden boyutlanınca desktop'a geçişte açık paneli kapat
+    const mq = window.matchMedia("(min-width: 901px)");
+    mq.addEventListener("change", (ev) => {
+      if (ev.matches) toggle(false);
+    });
+    window.addEventListener(
+      "scroll",
+      () => {
+        if (!header) return;
+        header.classList.toggle("scrolled", window.scrollY > 8);
+      },
+      { passive: true }
+    );
+    // Header yüksekliğini ölç ve CSS değişkenine yaz (hero overlap için)
+    function setHeaderHeight() {
+      if (!header) return;
+      const h = header.getBoundingClientRect().height;
+      document.documentElement.style.setProperty("--header-height", h + "px");
+    }
+    setHeaderHeight();
+    window.addEventListener("resize", setHeaderHeight, { passive: true });
+  })();
+</script>

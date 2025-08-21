@@ -1,28 +1,692 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-export let title: string = "İletişim";
-export let description: string = "Aydın Emlak ile iletişime geçin. Adres, telefon ve e-posta bilgilerimiz.";
 ---
-<BaseLayout title={title} description={description}>
-  <h1>İletişim</h1>
-  <div class="contact-info">
-    <p><strong>Adres:</strong> [Adresinizi buraya girin]</p>
-    <p><strong>Telefon:</strong> <a href="tel:+900000000000">+90 000 000 00 00</a></p>
-    <p><strong>E-posta:</strong> <a href="mailto:info@aydin-emlak.com">info@aydin-emlak.com</a></p>
-  </div>
-  <section class="contact-form">
-    <h2>İletişim Formu</h2>
-    <form action="#" method="POST">
-      <label for="name">Ad Soyad</label>
-      <input type="text" id="name" name="name" required />
 
-      <label for="email">E-posta</label>
-      <input type="email" id="email" name="email" required />
+<BaseLayout
+  title="İletişim - Belkıs Şensan | RE/MAX Pasha Aydın"
+  description="Belkıs Şensan ile iletişime geçin. Aydın, Kuşadası ve Didim'de gayrimenkul hizmetleri için profesyonel destek."
+>
+  <main class="contact-page">
+    <!-- Hero Section -->
+    <section class="hero-section">
+      <div class="hero-container">
+        <div class="hero-content">
+          <span class="hero-subtitle">RE/MAX Pasha Aydın</span>
+          <h1 class="hero-title">İletişim</h1>
+          <p class="hero-description">
+            Gayrimenkul ihtiyaçlarınız için 7/24 yanınızdayız. Hemen iletişime
+            geçin, hayalinizdeki eve birlikte ulaşalım.
+          </p>
+          <div class="hero-keywords">
+            <span class="keyword">📞 Telefonla Destek</span>
+            <span class="keyword">📧 Hızlı Yanıt</span>
+            <span class="keyword">📍 Aydın Merkez</span>
+            <span class="keyword">🏠 Ücretsiz Danışmanlık</span>
+          </div>
+        </div>
+        <div class="hero-visual">
+          <div class="hero-shapes">
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+            <div class="shape shape-3"></div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-      <label for="message">Mesajınız</label>
-      <textarea id="message" name="message" rows="5" required></textarea>
+    <!-- Contact Content -->
+    <section class="contact-content">
+      <div class="contact-container">
+        <!-- Contact Cards -->
+        <div class="contact-grid">
+          <!-- Phone Contact -->
+          <div class="contact-card phone-card">
+            <div class="card-icon">📞</div>
+            <h3>Telefon</h3>
+            <div class="contact-details">
+              <a href="tel:+905551234567" class="contact-link primary">
+                <span class="label">Mobil:</span>
+                <span class="value">+90 555 123 45 67</span>
+              </a>
+              <a href="tel:+902561234567" class="contact-link">
+                <span class="label">Ofis:</span>
+                <span class="value">+90 256 123 45 67</span>
+              </a>
+            </div>
+            <p class="contact-note">7/24 arayabilirsiniz</p>
+          </div>
 
-      <button type="submit" class="btn-primary">Gönder</button>
-    </form>
-  </section>
+          <!-- Email Contact -->
+          <div class="contact-card email-card">
+            <div class="card-icon">✉️</div>
+            <h3>E-posta</h3>
+            <div class="contact-details">
+              <a
+                href="mailto:belkis@remaxpasha.com"
+                class="contact-link primary"
+              >
+                <span class="label">E-posta:</span>
+                <span class="value">belkis@remaxpasha.com</span>
+              </a>
+              <a href="mailto:info@remaxpasha.com" class="contact-link">
+                <span class="label">Genel:</span>
+                <span class="value">info@remaxpasha.com</span>
+              </a>
+            </div>
+            <p class="contact-note">24 saat içinde yanıt</p>
+          </div>
+        </div>
+
+        <!-- Working Hours & Service Areas -->
+        <div class="info-grid">
+          <!-- Working Hours -->
+          <div class="info-card hours-card">
+            <h3>📅 Çalışma Saatleri</h3>
+            <div class="hours-list">
+              <div class="hour-item">
+                <span class="day">Pazartesi - Cuma</span>
+                <span class="time">09:00 - 18:00</span>
+              </div>
+              <div class="hour-item">
+                <span class="day">Cumartesi</span>
+                <span class="time">10:00 - 16:00</span>
+              </div>
+              <div class="hour-item weekend">
+                <span class="day">Pazar</span>
+                <span class="time">Randevu İle</span>
+              </div>
+            </div>
+            <div class="emergency-note">
+              <p><strong>Acil Durumlar:</strong> 7/24 telefon desteği</p>
+            </div>
+          </div>
+
+          <!-- Service Areas -->
+          <div class="info-card areas-card">
+            <h3>🗺️ Hizmet Bölgelerimiz</h3>
+            <div class="areas-list">
+              <div class="area-item featured">
+                <span class="area-name">Aydın Merkez</span>
+                <span class="area-badge">Ana Ofis</span>
+              </div>
+              <div class="area-item">
+                <span class="area-name">Kuşadası</span>
+                <span class="area-desc">Sahil ve merkez</span>
+              </div>
+              <div class="area-item">
+                <span class="area-name">Didim</span>
+                <span class="area-desc">Turizm bölgesi</span>
+              </div>
+              <div class="area-item">
+                <span class="area-name">Nazilli</span>
+                <span class="area-desc">Şehir merkezi</span>
+              </div>
+              <div class="area-item">
+                <span class="area-name">Söke</span>
+                <span class="area-desc">Çevre bölgeler</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Map Section -->
+        <div class="map-section">
+          <div class="map-header">
+            <h2>📍 Ofis Konumumuz</h2>
+            <p>Kolayca ulaşabileceğiniz merkezi konumumuz</p>
+          </div>
+
+          <div class="map-container">
+            <div class="map-wrapper">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d227.71181465962425!2d27.266081640829892!3d37.820703472635714!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14beaeb326b61b95%3A0x6463fe46afbad35!2sRE%2FMAX%20PASHA%20KU%C5%9EADASI!5e0!3m2!1str!2str!4v1755773970972!5m2!1str!2str"
+                width="100%"
+                height="400"
+                style="border:0;"
+                allowfullscreen=""
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+              >
+              </iframe>
+            </div>
+
+            <div class="map-info">
+              <div class="address-info">
+                <h3>RE/MAX Pasha Aydın</h3>
+                <p>Atatürk Bulvarı No: 123/A<br />Efeler, Aydın 09000</p>
+              </div>
+              <div class="map-actions">
+                <a
+                  href="https://www.google.com/maps/dir//RE%2FMAX+PASHA+KU%C5%9EADASI/@37.820703,27.266081,17z"
+                  class="map-btn directions"
+                  target="_blank"
+                >
+                  📍 Yol Tarifi Al
+                </a>
+                <a
+                  href="https://maps.google.com/?q=RE/MAX+PASHA+KUŞADASI"
+                  class="map-btn view"
+                  target="_blank"
+                >
+                  🗺️ Haritada Görüntüle
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quick Contact Actions -->
+        <div class="quick-actions">
+          <div class="actions-header">
+            <h2>🚀 Hızlı İletişim</h2>
+            <p>Size en uygun iletişim yöntemini seçin</p>
+          </div>
+
+          <div class="actions-grid">
+            <a href="tel:+905551234567" class="action-btn call-btn">
+              <div class="btn-icon">📞</div>
+              <div class="btn-content">
+                <h3>Hemen Ara</h3>
+                <p>Doğrudan telefon görüşmesi</p>
+              </div>
+            </a>
+
+            <a
+              href="https://wa.me/905551234567"
+              class="action-btn whatsapp-btn"
+              target="_blank"
+            >
+              <div class="btn-icon">💬</div>
+              <div class="btn-content">
+                <h3>WhatsApp</h3>
+                <p>Mesajlaşma ve görüntülü arama</p>
+              </div>
+            </a>
+
+            <a href="mailto:belkis@remaxpasha.com" class="action-btn email-btn">
+              <div class="btn-icon">✉️</div>
+              <div class="btn-content">
+                <h3>E-posta Gönder</h3>
+                <p>Detaylı bilgi paylaşımı</p>
+              </div>
+            </a>
+
+            <a href="/hizmetler" class="action-btn services-btn">
+              <div class="btn-icon">🏠</div>
+              <div class="btn-content">
+                <h3>Hizmetlerimiz</h3>
+                <p>Tüm gayrimenkul hizmetleri</p>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <style>
+    .contact-page {
+      font-family: "Montserrat", sans-serif;
+    }
+
+    /* Contact Content */
+    .contact-content {
+      padding: 6rem 0;
+      background: white;
+    }
+
+    .contact-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* Contact Grid */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      margin-bottom: 4rem;
+    }
+
+    .contact-card {
+      background: white;
+      padding: 2.5rem;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      transition: all 0.3s ease;
+      text-align: center;
+    }
+
+    .contact-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.15);
+    }
+
+    .card-icon {
+      font-size: 3rem;
+      margin-bottom: 1.5rem;
+      display: block;
+    }
+
+    .contact-card h3 {
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: var(--dark-color);
+      margin: 0 0 1.5rem 0;
+    }
+
+    .contact-details {
+      margin-bottom: 1rem;
+    }
+
+    .contact-link {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.75rem 1rem;
+      margin-bottom: 0.5rem;
+      background: #f8fafc;
+      border-radius: 12px;
+      text-decoration: none;
+      color: var(--dark-color);
+      transition: all 0.3s ease;
+    }
+
+    .contact-link.primary {
+      background: var(--primary-color);
+      color: white;
+    }
+
+    .contact-link:hover {
+      background: var(--secondary-color);
+      color: white;
+      transform: translateX(5px);
+    }
+
+    .contact-link .label {
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+
+    .contact-link .value {
+      font-weight: 500;
+    }
+
+    .address p {
+      margin: 0.25rem 0;
+      color: var(--dark-color);
+      line-height: 1.4;
+    }
+
+    .contact-note {
+      font-size: 0.9rem;
+      color: #666;
+      font-style: italic;
+      margin: 0;
+    }
+
+    /* Info Grid */
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-bottom: 4rem;
+    }
+
+    .info-card {
+      background: white;
+      padding: 2.5rem;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.1);
+    }
+
+    .info-card h3 {
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: var(--dark-color);
+      margin: 0 0 1.5rem 0;
+    }
+
+    /* Working Hours */
+    .hours-list {
+      margin-bottom: 1.5rem;
+    }
+
+    .hour-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.75rem 0;
+      border-bottom: 1px solid #f1f5f9;
+    }
+
+    .hour-item:last-child {
+      border-bottom: none;
+    }
+
+    .hour-item.weekend .time {
+      color: var(--secondary-color);
+      font-weight: 600;
+    }
+
+    .day {
+      font-weight: 500;
+      color: var(--dark-color);
+    }
+
+    .time {
+      font-weight: 600;
+      color: var(--primary-color);
+    }
+
+    .emergency-note {
+      background: #f8fafc;
+      padding: 1rem;
+      border-radius: 12px;
+    }
+
+    .emergency-note p {
+      margin: 0;
+      color: var(--primary-color);
+      font-size: 0.9rem;
+    }
+
+    /* Service Areas */
+    .areas-list {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .area-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem;
+      background: #f8fafc;
+      border-radius: 12px;
+      transition: all 0.3s ease;
+    }
+
+    .area-item.featured {
+      background: var(--primary-color);
+      color: white;
+    }
+
+    .area-item:hover {
+      transform: translateX(5px);
+      box-shadow: 0 5px 15px -5px rgba(0, 0, 0, 0.1);
+    }
+
+    .area-name {
+      font-weight: 600;
+    }
+
+    .area-badge {
+      background: rgba(255, 255, 255, 0.2);
+      padding: 0.25rem 0.75rem;
+      border-radius: 1rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+
+    .area-desc {
+      font-size: 0.9rem;
+      color: #666;
+    }
+
+    .area-item.featured .area-desc {
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    /* Map Section */
+    .map-section {
+      margin: 3rem 0;
+    }
+
+    .map-header {
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .map-header h2 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--dark-color);
+      margin: 0 0 0.5rem 0;
+    }
+
+    .map-header p {
+      color: #666;
+      font-size: 1rem;
+      margin: 0;
+    }
+
+    .map-container {
+      background: white;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.1);
+    }
+
+    .map-wrapper {
+      position: relative;
+      width: 100%;
+      height: 400px;
+    }
+
+    .map-wrapper iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    .map-info {
+      padding: 1.5rem;
+      background: white;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .address-info h3 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--primary-color);
+      margin: 0 0 0.5rem 0;
+    }
+
+    .address-info p {
+      color: #666;
+      line-height: 1.4;
+      margin: 0;
+      font-size: 0.9rem;
+    }
+
+    .map-actions {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+
+    .map-btn {
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: 25px;
+      font-weight: 600;
+      font-size: 0.85rem;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: all 0.3s ease;
+      white-space: nowrap;
+    }
+
+    .map-btn.directions {
+      background: var(--primary-color);
+      color: white;
+    }
+
+    .map-btn.view {
+      background: transparent;
+      color: var(--primary-color);
+      border: 2px solid var(--primary-color);
+    }
+
+    .map-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px -5px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Quick Actions */
+    .quick-actions {
+      margin: 4rem 0;
+    }
+
+    .actions-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .actions-header h2 {
+      font-size: 2rem;
+      font-weight: 600;
+      color: var(--dark-color);
+      margin: 0 0 1rem 0;
+    }
+
+    .actions-header p {
+      color: #666;
+      font-size: 1.1rem;
+      margin: 0;
+    }
+
+    .actions-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .action-btn {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      padding: 2rem;
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.1);
+      text-decoration: none;
+      color: var(--dark-color);
+      transition: all 0.3s ease;
+      border: 2px solid transparent;
+    }
+
+    .action-btn:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.15);
+      border-color: var(--primary-color);
+    }
+
+    .btn-icon {
+      font-size: 2.5rem;
+      min-width: 60px;
+    }
+
+    .btn-content h3 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin: 0 0 0.5rem 0;
+      color: var(--dark-color);
+    }
+
+    .btn-content p {
+      font-size: 0.9rem;
+      color: #666;
+      margin: 0;
+    }
+
+    .call-btn:hover .btn-icon {
+      color: #10b981;
+    }
+    .whatsapp-btn:hover .btn-icon {
+      color: #25d366;
+    }
+    .email-btn:hover .btn-icon {
+      color: #3b82f6;
+    }
+    .services-btn:hover .btn-icon {
+      color: var(--primary-color);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero-section {
+        padding: 6rem 0 4rem;
+      }
+
+      .contact-container {
+        padding: 0 1rem;
+      }
+
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .info-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .actions-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .map-buttons {
+        flex-direction: column;
+      }
+
+      .map-info {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        text-align: center;
+      }
+
+      .map-actions {
+        justify-content: center;
+      }
+
+      .action-btn {
+        padding: 1.5rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero-container {
+        padding: 0 1rem;
+      }
+
+      .contact-card {
+        padding: 2rem;
+      }
+
+      .info-card {
+        padding: 2rem;
+      }
+
+      .map-placeholder {
+        height: 300px;
+      }
+
+      .map-buttons {
+        gap: 0.5rem;
+      }
+
+      .map-btn {
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+      }
+    }
+  </style>
 </BaseLayout>

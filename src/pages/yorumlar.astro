@@ -1,0 +1,1110 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+interface Testimonial {
+  id: number;
+  name: string;
+  role: string;
+  content: string;
+  rating: number;
+  location: string;
+  avatar: string;
+  date: string;
+  propertyType?: string;
+}
+
+const testimonials: Testimonial[] = [
+  {
+    id: 1,
+    name: "A******* İ*******",
+    role: "Müşteri",
+    content: "Kiralamayla ilgili tüm aşamalarda oldukça sistemli ve çözüm odaklı bir şekilde ilerledik. Açık ve dürüst iletişim sayesinde süreç sorunsuz ve güven verici geçti. Memnun kaldığım bir deneyimdi. Belkıs Hanım'a teşekkür ediyorum.",
+    rating: 5,
+    location: "Aydın",
+    avatar: "👨‍💼",
+    date: "29 Temmuz 2025",
+    propertyType: "Kiralama"
+  },
+  {
+    id: 2,
+    name: "Murat Şeker",
+    role: "Müşteri",
+    content: "Belkıs hanım, ilgi alakanız ve kibarlığınız için çok teşekkür ederim...",
+    rating: 5,
+    location: "Aydın",
+    avatar: "👨‍💼",
+    date: "27 Temmuz 2025",
+    propertyType: "Gayrimenkul"
+  },
+  {
+    id: 3,
+    name: "Nermin İsmayıl",
+    role: "Müşteri",
+    content: "Her işine yüreğini koyan, yardım ederken gözünde ışık olan insanlara az rastlanır. Ben rastladım... Ve iyi ki rastladım. Ev alım sürecinde bana verdiğin destek için minnettarım. İşine duyduğun özen, bana verdiğin güven ve samimiyet unutulmaz. İyi ki yollarımız kesişti. Her şey için teşekkür ederim. 🙏✨",
+    rating: 5,
+    location: "Aydın",
+    avatar: "👩‍💼",
+    date: "25 Temmuz 2025",
+    propertyType: "Ev Alımı"
+  },
+  {
+    id: 4,
+    name: "Reşit Namdar",
+    role: "Müşteri",
+    content: "Emlak piyasasında zor anlar yaşadığımız şu günlerde bile BELKIS hanımla olan çalışmamızdan çok hızlı sonuç aldık. Aldığımız tüm yardımlardan çok memnun kaldığımızı söylemek isterim. Onunla çalışmak bir ayrıcalık; işindeki profesyonelliği samimiyeti içtenliği ve işini çok sevmesi sanırım onu diğerlerinden ayıran... BELKIS emeklerin için çok teşekkürler ve iş hayatında nice başarılar diliyorum...",
+    rating: 5,
+    location: "Aydın",
+    avatar: "👨‍💻",
+    date: "25 Temmuz 2025",
+    propertyType: "Gayrimenkul"
+  },
+  {
+    id: 5,
+    name: "Yılmaz Gül",
+    role: "Müşteri",
+    content: "Belkıs hanımla çalışmak çok keyifliydi emeklerinize sağlık tuttuğunu koparan bir emlak danışmanı başarılarınızın devamını diliyorum",
+    rating: 5,
+    location: "Aydın",
+    avatar: "👨‍💼",
+    date: "18 Temmuz 2025",
+    propertyType: "Gayrimenkul"
+  },
+  {
+    id: 6,
+    name: "Narin Yaylacı",
+    role: "Müşteri",
+    content: "Bu süreçte yanımda olan ve bana her anlamda destek veren çok özel bir insandan bahsetmek istiyorum: Sevgili Belkıs Şensan. Kendisi yalnızca başarılı bir emlak danışmanı değil, aynı zamanda kalbiyle çalışan nadir insanlardan biri. Aydın'daki evimiz için ilk kapısını çaldığım kişiydi ve iyi ki öyle yapmışım. Her defasında, 'En iyisi olacak, birlikte halledeceğiz' diyerek beni yeniden motive etti. Onunla çalışmak bir ayrıcalıktı; ama onu dost bilmek, tarifsiz bir kıymet. ❤️",
+    rating: 5,
+    location: "Aydın",
+    avatar: "👩‍💼",
+    date: "10 Temmuz 2025",
+    propertyType: "Ev Alımı"
+  },
+  {
+    id: 7,
+    name: "Erkam Cinser",
+    role: "Müşteri",
+    content: "Belkıs hanım aracılığı ile bir ev satın aldık bu nedenle tanıştık. Kendisi çok profesyonel düzenli ve disiplinli. Hem alıcı için hem satıcı için elinden gelen her şeyi yapıyor ve iki tarafı da memnun ederek ortayı buluyor, evi satın almamız tapu randevusu derken 3 gün de bitti pazarlıkta kendisinin katkısı da oldu bunun için de teşekkür ederim. Kesinlikle işinde 1 numara tartışmasız.",
+    rating: 5,
+    location: "Aydın",
+    avatar: "👨‍💼",
+    date: "9 Temmuz 2025",
+    propertyType: "Ev Alımı"
+  },
+  {
+    id: 8,
+    name: "Mine Bilgili",
+    role: "Müşteri",
+    content: "Profesyonel yaklaşım, gerçekçi değerlendirme, uzlaştırma yeteneği ve güler yüz. Ve bir dost.",
+    rating: 5,
+    location: "Aydın",
+    avatar: "👩‍💼",
+    date: "8 Temmuz 2025",
+    propertyType: "Gayrimenkul"
+  },
+  {
+    id: 9,
+    name: "S******* S*******",
+    role: "Müşteri",
+    content: "İki tarafın da haklarını gözeten koruyan bir bayan satış sonrası bile yardımcı oluyor bizzat burdan teşekkür ederim",
+    rating: 5,
+    location: "Aydın",
+    avatar: "👨‍💼",
+    date: "19 Haziran 2025",
+    propertyType: "Satış"
+  },
+  {
+    id: 10,
+    name: "A******* M*******",
+    role: "Müşteri",
+    content: "Belkıs hanıma güler yüzü nezaketi yardım ve desteklerinden dolayı çok teşekkür ederiz. Güvenilirliği için de ayrıca teşekkür ederiz",
+    rating: 5,
+    location: "Aydın",
+    avatar: "👨‍💼",
+    date: "2 Haziran 2025",
+    propertyType: "Gayrimenkul"
+  },
+  {
+    id: 11,
+    name: "A******* G*******",
+    role: "Müşteri",
+    content: "Belkıs hanım çok güleryüzlü yardım sever birisi, süreçte bizlere çok yardımcı oldu kendilerine çok teşekkür ederiz",
+    rating: 5,
+    location: "Aydın",
+    avatar: "👩‍💼",
+    date: "2 Haziran 2025",
+    propertyType: "Gayrimenkul"
+  },
+  {
+    id: 12,
+    name: "H******* K*******",
+    role: "Müşteri",
+    content: "Siz olmasaydınız ben bu evi almazdım, sizin iyi niyetiniz ve enerjiniz bizi sonuça götürdü, tekrar çok teşekkür ederim.",
+    rating: 5,
+    location: "Aydın",
+    avatar: "👨‍💼",
+    date: "24 Mart 2025",
+    propertyType: "Ev Alımı"
+  },
+  {
+    id: 13,
+    name: "Serap Büyüksungur",
+    role: "Müşteri",
+    content: "Kuşadası'nda neredeyse iki yılı bulan ev arayışımızda tam pesetmek üzereyken Belkıs kızımızla tanıştık. Nasıl nokta atışı nasıl yol gösterme... çok teşekkür ederim 🙏",
+    rating: 5,
+    location: "Kuşadası",
+    avatar: "�‍�",
+    date: "24 Aralık 2024",
+    propertyType: "Ev Arayışı"
+  },
+  {
+    id: 14,
+    name: "Neylan Süer",
+    role: "Müşteri",
+    content: "İş tecrübesi samimiyeti dürüstlüğü ve bilgisiyle bana çok yardımcı oldu. Kuşadası Remax ile bundan sonra Belkıs Hanım sayesinde gönül rahatlığı ile çalışabilirim.",
+    rating: 5,
+    location: "Kuşadası",
+    avatar: "👩‍💼",
+    date: "23 Aralık 2024",
+    propertyType: "Gayrimenkul"
+  },
+  {
+    id: 15,
+    name: "Burak Çubuk",
+    role: "Müşteri",
+    content: "Emekleri için Belkıs hanım çok teşekkür ediyorum evimizi çok kısa zamanda doğru rakama sattı. İşinde son derece titiz ve profesyoneldi. Tekrardan her şey için teşekkür ederim 🙏🏻🙏🏻",
+    rating: 5,
+    location: "Aydın",
+    avatar: "👨‍💼",
+    date: "19 Ekim 2024",
+    propertyType: "Ev Satışı"
+  },
+  {
+    id: 16,
+    name: "O******* B*******",
+    role: "Müşteri",
+    content: "Belkıs Hanımla çalışmamızda çok hızlı sonuç aldık. İşine profesyonel yaklaşımı ve titizliği her adımda kolaylık sağladı. Çalıştığım en başarılı danışman olduğunu söyleyebilirim. Her açıdan 5 yıldız.",
+    rating: 5,
+    location: "Aydın",
+    avatar: "�‍💼",
+    date: "8 Ekim 2024",
+    propertyType: "Gayrimenkul"
+  },
+  {
+    id: 17,
+    name: "Z******* A*******",
+    role: "Müşteri",
+    content: "Çok memnun kaldım. Son derece profesyonel. Hiç üzülmeden tedirginlik duymadan güven duygum sarsılmadan çok hızlı stressiz bir şekilde süreç ilerledi. İnsanlarla iletişimi işine olan saygısı çok iyi. Kendisine son derece minnettarım ve çevreme de tavsiyede bulundum",
+    rating: 5,
+    location: "Aydın",
+    avatar: "👩‍💼",
+    date: "27 Eylül 2024",
+    propertyType: "Gayrimenkul"
+  },
+  {
+    id: 18,
+    name: "Mustafa Tek",
+    role: "Müşteri",
+    content: "Belkıs hanım eşimle bana gereken zamanı ayırıp doğru emlak'ı bulmamızda çok profesyonel bir şekilde yardımcı oldu. Bundan sonra da kendisiyle çalışmaya devam etmek isteriz.",
+    rating: 5,
+    location: "Aydın",
+    avatar: "👨‍💼",
+    date: "16 Eylül 2024",
+    propertyType: "Gayrimenkul"
+  },
+  {
+    id: 19,
+    name: "Gündem Güler",
+    role: "Müşteri",
+    content: "Belkıs hanımla çalışmaktan çok çok memnun kaldım. Disiplinli bir kadın, tüm sorularıma cevap buldum. Profesyonel bir danışman. Bizi çok şaşırttı, empati yeteneği çok güçlü, karşılaşabileceğim sorunlara kadar öngörülüydü ve daha olmadan bir b planı çizdi, süreç onun sayesinde çok keyifliydi.",
+    rating: 5,
+    location: "Aydın",
+    avatar: "�‍�",
+    date: "28 Ağustos 2024",
+    propertyType: "Gayrimenkul"
+  },
+  {
+    id: 20,
+    name: "Demet Çamur",
+    role: "Müşteri",
+    content: "Belkıs hanım sayesinde ev sahibi olduk Sağolsun çok ilgilendi çok kibar nazik naif biri mesleğinde çok profesyonel tek kelimeyle 10 numara 5 yıldız",
+    rating: 5,
+    location: "Aydın",
+    avatar: "👩‍💼",
+    date: "23 Temmuz 2024",
+    propertyType: "Ev Alımı"
+  },
+  {
+    id: 21,
+    name: "Mehmet Balcıl",
+    role: "Müşteri",
+    content: "Belkıs hanım daire arayışımızdaki kriterleri çok kısa sürede analiz edip biz hiç yorulmadan tercih edilebilir seçenekleri önümüze serdi. Hiç yorulmadan tamam diyebileceğimiz alım sürecini keyifle yaşadık kurumsallık ve vizyonlu danışmanlığı için kendisine sonsuz teşekkürler artık ailemizin gayrimenkul danışmanıdır tavsiye ederiz.",
+    rating: 5,
+    location: "Aydın",
+    avatar: "�‍💼",
+    date: "20 Temmuz 2024",
+    propertyType: "Daire Alımı"
+  },
+  {
+    id: 22,
+    name: "Nesrin Özturunç",
+    role: "Müşteri",
+    content: "Emlakçı dendiğinde bi tüyleri ürperiyor insanın ama Belkıs hanım çok samimi, güvenilir ilgili bir danışmandı, kendisine konut edinme sürecimizi ivedilik içinde yönettiği ve bize sağladığı rahatlık ve kolaylıklar için çok teşekkür ediyorum. Umarım kendisiyle yolumuz yine kesişir de bir gün kendisi aracılığı ile yazlığımızı da alırız 🙏",
+    rating: 5,
+    location: "Aydın",
+    avatar: "👩‍💼",
+    date: "12 Temmuz 2024",
+    propertyType: "Konut Alımı"
+  },
+  {
+    id: 23,
+    name: "Onur Karaman",
+    role: "Müşteri",
+    content: "Belkıs hanım güvenilir, tecrübeli bir insan. Onunla çalışmak keyifli. Bütün işleyişte çok yardımcı oldu. Kendisine teşekkür ederiz.",
+    rating: 5,
+    location: "Aydın",
+    avatar: "👨‍💼",
+    date: "11 Temmuz 2024",
+    propertyType: "Gayrimenkul"
+  },
+  {
+    id: 24,
+    name: "Sinem Tuchscherer",
+    role: "Müşteri",
+    content: "Belkıs hanım villamızı iki kere kiraya verdi ve kendisi ile bu vesile ile iki kere çalışmış olduk. Kendisi bizim Kuşadası'nda gözümüz kulağımız oldu ve bize sürekli bilgi akışı sağladı. Sektörde çok eski olmamasına rağmen, kendini sektöre hızlı bir şekilde adapte etmiş, eğitimlerle de kendini devamlı geliştiren ve yaşadığı deneyimlerle kendine ders çıkarabilen, verdiği bilgileri istatiksel olarak destekleyebilen, aktüel bilgiye sahip profesyonel bir danışman.",
+    rating: 5,
+    location: "Kuşadası",
+    avatar: "👩‍💼",
+    date: "11 Temmuz 2024",
+    propertyType: "Villa Kiralama"
+  },
+  {
+    id: 25,
+    name: "Nilay Akın",
+    role: "Müşteri",
+    content: "Belkıs hanım işinde çok çok profesyonel, güvenilir ve çözüm odaklı. Kendisi ev satışımızı çok kısa bir sürede tamamladı. Sektörde çok güvenilir bir kişi. Burdan tekrar teşekkür ediyorum.",
+    rating: 5,
+    location: "Aydın",
+    avatar: "👩‍💼",
+    date: "26 Haziran 2024",
+    propertyType: "Ev Satışı"
+  },
+  {
+    id: 26,
+    name: "M******* O*******",
+    role: "Müşteri",
+    content: "Gayrimenkul konusunda önyargıları değiştiren para kazanmaktan ziyade öncelikle güven esaslı olup en ince ayrıntısına kadar bilgilendiren siz yokken de sizin adınıza kendi mülk alacakmış gibi en ince detayları araştıran şahane insan... Aynı zamanda iyi bir dost :)) Gerek iş gerek kişilik anlamında harikasınız tüm emeklerinize teşekkürler",
+    rating: 5,
+    location: "Aydın",
+    avatar: "👨‍💼",
+    date: "20 Haziran 2024",
+    propertyType: "Gayrimenkul"
+  },
+  {
+    id: 27,
+    name: "Ü******* A*******",
+    role: "Müşteri",
+    content: "Belkıs hanımın süreçle ilgili profesyonel, güvenilir, dürüst, disiplinli hizmetinden çok memnun kaldım. Ayrıca güleryüzlü, samimi, saygılı ilgisi ve emeği için çok teşekkür ediyorum.",
+    rating: 5,
+    location: "Aydın",
+    avatar: "👨‍💼",
+    date: "7 Haziran 2024",
+    propertyType: "Gayrimenkul"
+  },
+  {
+    id: 28,
+    name: "Kamil Sağlam",
+    role: "Müşteri",
+    content: "Merhaba Belkıs hanım. Villamızın satışı için yapmış olduğunuz yerinde ve tam isabetli araştırmalardan dolayı bizi bilgilendirip, doğru sonuca ulaştırdığınız için çok teşekkür ederim. Ellerinize, emeğinize ve yüreğinize sağlık çok teşekkür ederiz Ailecek.",
+    rating: 5,
+    location: "Aydın",
+    avatar: "👨‍💼",
+    date: "7 Nisan 2024",
+    propertyType: "Villa Satışı"
+  },
+  {
+    id: 29,
+    name: "Cigdem Demirel",
+    role: "Müşteri",
+    content: "Öncelikle güler yüzlü ve saygılı tavırlar için teşekkür ediyoruz müşterinin ne istediğini bilen, müşteriyi doğru yönlendirebilen net tavırlar için çok memnun kaldık. İstediğimiz zaman kendisine ulaşabildik. sorularımıza net cevaplar alabildik. Bundan sonra bütün çevreme rahatlıkla tavsiye edebileceğimiz bir kurum kendisine teşekkür ederiz.",
+    rating: 5,
+    location: "Aydın",
+    avatar: "👩‍💼",
+    date: "1 Nisan 2024",
+    propertyType: "Gayrimenkul"
+  },
+  {
+    id: 30,
+    name: "Ijlal Korkmaz",
+    role: "Müşteri",
+    content: "En başından sonuna kadar profesyonel ve harika hizmeti için çok teşekkür etmek istiyorum. Her konuda bilgisi deneyimi ve güvenirliği harikaydi. Bize her konuda fazlasıyla yardımcı oldu.",
+    rating: 5,
+    location: "Aydın",
+    avatar: "👩‍💼",
+    date: "6 Mart 2024",
+    propertyType: "Gayrimenkul"
+  },
+  {
+    id: 31,
+    name: "Gülşah Gezgin",
+    role: "Müşteri",
+    content: "Gayrimenkul konusunda tüm önyargıları değiştiren para kazanmaktan öncelik güven esaslı olup en ince ayrıntısına kadar bilgilendiren siz yokken de sizin adınıza kendi mülküymüş gibi koruyan kollayan kelimeler yetmez anlatmaya Belkıs Hanım'a verin rahat edin, harikasınız tüm emeklerinize teşekkürler",
+    rating: 5,
+    location: "Aydın",
+    avatar: "👩‍💼",
+    date: "22 Şubat 2024",
+    propertyType: "Gayrimenkul"
+  },
+  {
+    id: 32,
+    name: "Ali Seval",
+    role: "Müşteri",
+    content: "Belkıs hanım süreçle ilgili o kadar profesyonel ve kontrollü ilerledi ki kendisine ne kadar teşekkür etsek az kalır herkese kendisinin danışmanlığını tavsiye ediyorum",
+    rating: 5,
+    location: "Aydın",
+    avatar: "👨‍💼",
+    date: "30 Ocak 2024",
+    propertyType: "Gayrimenkul"
+  },
+  {
+    id: 33,
+    name: "İlke Ömür Özel",
+    role: "Müşteri",
+    content: "Ne kadar iyi bir danışman olduğunu evi takasta belirlediği fiyatın üstünde üç hafta gibi kısa bir sürede satarak bize kanıtlamış oldu. Her şey için teşekkür ederiz Belkıs hanım sayenizde ben de hayalimdeki evi aldım",
+    rating: 5,
+    location: "Aydın",
+    avatar: "👩‍💼",
+    date: "17 Aralık 2023",
+    propertyType: "Ev Alımı/Satışı"
+  },
+  {
+    id: 34,
+    name: "Ö******* A*******",
+    role: "Müşteri",
+    content: "MEMNUN KALDIM SÜREÇ GÜZELDİ",
+    rating: 5,
+    location: "Aydın",
+    avatar: "👨‍💼",
+    date: "24 Ekim 2023",
+    propertyType: "Gayrimenkul"
+  },
+  {
+    id: 35,
+    name: "Zafer Ertugal",
+    role: "Müşteri",
+    content: "Belkıs Hanımın son derece güvenilir, işini titizlikle yapan ve gözünüzün asla arkada kalmayacağı bir iş disipliniyle çalışmasına şahit oldum. Çözüm odaklılığı, takipçiliği, emeğini esirgemeden her an ve severek destek verdiği için kendisine çok teşekkür ederim.",
+    rating: 5,
+    location: "Aydın",
+    avatar: "👨‍💼",
+    date: "22 Ekim 2023",
+    propertyType: "Gayrimenkul"
+  },
+  {
+    id: 36,
+    name: "Didem Şen",
+    role: "Müşteri",
+    content: "Birlikte yürümekten asla korkmadığımız, tamamiyle güvendiğimiz, verdiği sözleri sonuna kadar yerine getiren, titiz, çalışkan ama her şeyden önemlisi nazik, saygılı ve güler yüzlü Belkıs'cığım iyi ki seninle yollarımız kesişmiş ve iyi ki bu yola seninle çıkmışız. Her şey için çok teşekkürler Belkıs Şensan... ve RE/MAX ailesi..",
+    rating: 5,
+    location: "Aydın",
+    avatar: "👩‍💼",
+    date: "4 Ekim 2023",
+    propertyType: "Gayrimenkul"
+  },
+  {
+    id: 37,
+    name: "Yunus Boz",
+    role: "Müşteri",
+    content: "Tanıştığım günden beri sadece Kuşadası değil Türkiye'nin her yerinde emlak konusunda kendisine fikirlerine gözüm kapalı güvendiğim işini dört dörtlük yapan güzel dost, güzel insan.",
+    rating: 5,
+    location: "Kuşadası",
+    avatar: "👨‍💼",
+    date: "26 Ağustos 2023",
+    propertyType: "Gayrimenkul"
+  },
+  {
+    id: 38,
+    name: "Şeref Arslantürk",
+    role: "Müşteri",
+    content: "Kuşadası'nda bir villa kiralamak istediğimde Belkıs hanım'la çalışmak harika bir deneyim oldu. Profesyonelliği, bölge hakkındaki bilgisi ve müşteri hizmetleri konusundaki uzmanlığı sayesinde kiralama sürecimiz sorunsuz ilerledi. Bize her aşamada yardımcı oldu ve tüm sorularımıza hızla yanıt verdi.",
+    rating: 5,
+    location: "Kuşadası",
+    avatar: "👨‍💼",
+    date: "26 Ağustos 2023",
+    propertyType: "Villa Kiralama"
+  },
+  {
+    id: 39,
+    name: "Belgin Artam",
+    role: "Müşteri",
+    content: "Belkıs hanım gerçekten işinde uzman ve çok güvenilir bir gayrimenkul danışmanı. Evimizi en güvenilir ve en hızlı şekilde sorunsuz kiraya vermemizde çok yardımcı oldu. Bu alanda işini severek yapan kişileri bulmak çok zor. Ama iyi ki kendisi ile tanışmışız. Çok memnun kaldık. Kesinlikle tavsiye ederim.",
+    rating: 5,
+    location: "Aydın",
+    avatar: "👩‍💼",
+    date: "26 Ağustos 2023",
+    propertyType: "Kiralama"
+  },
+  {
+    id: 40,
+    name: "E******* G*******",
+    role: "Müşteri",
+    content: "Belkıs hanımla bir süre çalışma fırsatı bulduğum için şanslı biri olduğumu düşünüyorum kendisi oldukça yaratıcı müşteriyi iyi yorumlayan konusuna hakim iletişimi çok önemseyen biri olarak başarılı bir dayanışmamız olmuştur bu süre zarfında aldığım memnuniyet neticesinde teşekkür eder iyi çalışmalar dilerim",
+    rating: 5,
+    location: "Aydın",
+    avatar: "👨‍💼",
+    date: "18 Ağustos 2023",
+    propertyType: "Gayrimenkul"
+  },
+  {
+    id: 41,
+    name: "Sandra Patapaite",
+    role: "International Customer",
+    content: "I am satisfied with the excellent customer service that I have received. This agent was very helpful and answered to all of my questions rapidly. Very trustworthy person and everything that she does for her customers is top of the standards. I am very happy with all the help I have received",
+    rating: 5,
+    location: "Kuşadası",
+    avatar: "👩‍💼",
+    date: "2 Ağustos 2023",
+    propertyType: "Real Estate"
+  },
+  {
+    id: 42,
+    name: "Sema Özkal",
+    role: "Müşteri",
+    content: "Belkıs hanım o kadar güzel yardım ediyorki sağolsun dürüst ve yardım sever eğer ki güvenilir birini arıyorsanız Belkıs hanımı tercih edin sağol ilgin ve yardımların için Belkıs hanım",
+    rating: 5,
+    location: "Aydın",
+    avatar: "👩‍💼",
+    date: "17 Temmuz 2023",
+    propertyType: "Gayrimenkul"
+  },
+  {
+    id: 43,
+    name: "Nurcan Akkoyunlu",
+    role: "Müşteri",
+    content: "Belkıs Hanım hoşgörülü yardım sever ilgili bir danışman kendisine çok teşekkür ederim bana her türlü yardımcı oldu ilgilendi hiç bir konuda başından savmadı her soruna çözüm buldu gerçekten karşıma çıktığı için Allahım'a binlerce şükürler olsun çok ama çok teşekkür ederim yüzü gibi kalbi güzel insan 🥰🧿🤗",
+    rating: 5,
+    location: "Aydın",
+    avatar: "👩‍💼",
+    date: "21 Haziran 2023",
+    propertyType: "Gayrimenkul"
+  },
+  {
+    id: 44,
+    name: "Şehnaz Banu Çetiner",
+    role: "Müşteri",
+    content: "Eski ve sorunlu bir evi tadilat yaptırıp kiraya verdik. Belkıs hanım süreci çok güzel yönetti. Profesyonel ve işine gayet hakim. Ömürlük gayrimenkul danışmanım olur umarım",
+    rating: 5,
+    location: "Aydın",
+    avatar: "👩‍💼",
+    date: "14 Haziran 2023",
+    propertyType: "Kiralama"
+  },
+  {
+    id: 45,
+    name: "Tülay Ersoy",
+    role: "Müşteri",
+    content: "Belkıs hanım profesyonel dürüst yardımsever işini çok iyi yapan güvenilir bir emlak danışmanı her şey için çok teşekkürler",
+    rating: 5,
+    location: "Aydın",
+    avatar: "👩‍💼",
+    date: "18 Nisan 2023",
+    propertyType: "Gayrimenkul"
+  }
+];
+---
+
+<BaseLayout
+  title="Müşteri Yorumları"
+  description="Belkıs Şensan ile çalışan müşterilerimizin deneyimleri ve yorumları."
+>
+  <div class="testimonials-page">
+    <!-- Header -->
+    <section class="page-header">
+      <div class="container">
+        <div class="header-content">
+          <h1>Belkıs Şensan Müşteri Yorumları</h1>
+          <p class="header-description">
+            Benimle çalışan müşterilerin yorumlarına aynı zamanda <strong>Remax Pasha Aydın </strong> Gayrimenkul'ün web sitesindende ulaşabilirsiniz!. Her bir yorum, benimle olan deneyimlerini ve memnuniyetlerini yansıtmaktadır.
+          </p>
+          <div class="stats-bar">
+            <div class="stat">
+              <span class="stat-number">500+</span>
+              <span class="stat-label">Mutlu Müşteri</span>
+            </div>
+            <div class="stat">
+              <span class="stat-number">4.9</span>
+              <span class="stat-label">Ortalama Puan</span>
+            </div>
+            <div class="stat">
+              <span class="stat-number">98%</span>
+              <span class="stat-label">Memnuniyet</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Filter -->
+    <section class="filter-section">
+      <div class="container">
+        <div class="filter-bar">
+          <button class="filter-btn active" data-filter="all">Tümü</button>
+          <button class="filter-btn" data-filter="Aydın">Aydın</button>
+          <button class="filter-btn" data-filter="Kuşadası">Kuşadası</button>
+          <button class="filter-btn" data-filter="Didim">Didim</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials Grid -->
+    <section class="testimonials-grid-section">
+      <div class="container">
+        <div class="testimonials-grid" id="testimonials-grid">
+          {testimonials.map((testimonial, index) => (
+            <article 
+              class="testimonial-item" 
+              data-location={testimonial.location}
+              style={`--animation-delay: ${index * 0.1}s`}
+            >
+              <div class="testimonial-card">
+                <!-- Header -->
+                <div class="card-header">
+                  <div class="author-info">
+                    <div class="author-avatar">{testimonial.avatar}</div>
+                    <div class="author-details">
+                      <h3 class="author-name">{testimonial.name}</h3>
+                      <p class="author-role">{testimonial.role}</p>
+                      <p class="author-location">📍 {testimonial.location}</p>
+                    </div>
+                  </div>
+                  <div class="rating">
+                    {Array.from({ length: 5 }, (_, i) => (
+                      <span class={`star ${i < testimonial.rating ? 'filled' : ''}`}>★</span>
+                    ))}
+                  </div>
+                </div>
+
+                <!-- Content -->
+                <div class="card-content">
+                  <blockquote class="testimonial-text">
+                    "{testimonial.content}"
+                  </blockquote>
+                </div>
+
+                <!-- Footer -->
+                <div class="card-footer">
+                  <div class="property-info">
+                    <span class="property-type">{testimonial.propertyType}</span>
+                  </div>
+                  <div class="testimonial-date">{testimonial.date}</div>
+                </div>
+
+                <!-- Decoration -->
+                <div class="card-decoration"></div>
+              </div>
+            </article>
+          ))}
+        </div>
+
+        
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+      <div class="container">
+        <div class="cta-content">
+          <h2>Siz de Bu Yorumlara Katılın</h2>
+          <p>Gayrimenkul ihtiyaçlarınız için bizimle iletişime geçin ve profesyonel hizmet alın</p>
+          <div class="cta-buttons">
+            <a href="/iletisim" class="cta-btn primary">İletişime Geçin</a>
+            <a href="tel:+905555555555" class="cta-btn secondary">Hemen Arayın</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</BaseLayout>
+
+<style>
+  .testimonials-page {
+    min-height: 100vh;
+  }
+
+  /* Page Header */
+  .page-header {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    color: white;
+    padding: 8rem 0 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .page-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") repeat;
+  }
+
+  .header-content {
+    text-align: center;
+    position: relative;
+    z-index: 2;
+  }
+
+  .page-header h1 {
+    font-size: clamp(2rem, 3vw, 2rem);
+    font-weight: 700;
+    margin: 0 0 1rem 0;
+    line-height: 1.1;
+    color: white;
+  }
+
+  .header-description {
+    font-size: 1rem;
+    margin: 0 0 3rem 0;
+    opacity: 0.9;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .stats-bar {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    
+  }
+
+  .stat {
+    text-align: center;
+  }
+
+  .stat-number {
+    display: block;
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+  }
+
+  .stat-label {
+    font-size: 1rem;
+    opacity: 0.9;
+  }
+
+  /* Filter Section */
+  .filter-section {
+    padding: 2rem 0;
+    background: white;
+    border-bottom: 1px solid #eee;
+  }
+
+  .filter-bar {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .filter-btn {
+    padding: 0.8rem 1.5rem;
+    border: 2px solid var(--primary-color);
+    background: white;
+    color: var(--primary-color);
+    border-radius: 2rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .filter-btn:hover,
+  .filter-btn.active {
+    background: var(--primary-color);
+    color: white;
+  }
+
+  /* Testimonials Grid */
+  .testimonials-grid-section {
+    padding: 4rem 0;
+    background: #f8fafc;
+  }
+
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+  }
+
+  .testimonial-item {
+    animation: slideUp 0.6s ease-out forwards;
+    animation-delay: var(--animation-delay);
+    transform: translateY(30px);
+    opacity: 0;
+  }
+
+  @keyframes slideUp {
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  .testimonial-card {
+    background: white;
+    border-radius: 20px;
+    padding: 2rem;
+    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .testimonial-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.15);
+  }
+
+  /* Card Header */
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1.5rem;
+  }
+
+  .author-info {
+    display: flex;
+    gap: 1rem;
+  }
+
+  .author-avatar {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    flex-shrink: 0;
+  }
+
+  .author-details h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin: 0 0 0.2rem 0;
+    color: var(--dark-color);
+  }
+
+  .author-role {
+    font-size: 0.9rem;
+    color: var(--primary-color);
+    margin: 0 0 0.2rem 0;
+    font-weight: 500;
+    text-align: left;
+  }
+
+  .author-location {
+    font-size: 0.85rem;
+    color: #666;
+    margin: 0;
+    text-align: left;
+  }
+
+  .rating {
+    display: flex;
+    gap: 0.2rem;
+  }
+
+  .star {
+    font-size: 1.1rem;
+    color: #ddd;
+  }
+
+  .star.filled {
+    color: #fbbf24;
+  }
+
+  /* Card Content */
+  .card-content {
+    flex: 1;
+    margin-bottom: 1.5rem;
+  }
+
+  .testimonial-text {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--dark-color);
+    margin: 0;
+    font-style: italic;
+  }
+
+  /* Card Footer */
+  .card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 1rem;
+    border-top: 1px solid #f0f0f0;
+  }
+
+  .property-type {
+    background: var(--primary-color);
+    color: white;
+    padding: 0.3rem 0.8rem;
+    border-radius: 1rem;
+    font-size: 0.8rem;
+    font-weight: 500;
+  }
+
+  .testimonial-date {
+    font-size: 0.85rem;
+    color: #666;
+  }
+
+  /* Card Decoration */
+  .card-decoration {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+  }
+
+  .testimonial-card:hover .card-decoration {
+    transform: scaleX(1);
+  }
+
+  /* Load More */
+  .load-more {
+    text-align: center;
+  }
+
+  .load-more-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 2rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .load-more-btn:hover {
+    background: var(--secondary-color);
+    transform: translateY(-2px);
+  }
+
+  .btn-loader {
+    font-size: 1.2rem;
+    animation: spin 1s linear infinite;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .load-more-btn.loading .btn-loader {
+    opacity: 1;
+  }
+
+  @keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  /* CTA Section */
+  .cta-section {
+    background: linear-gradient(135deg, var(--dark-color) 0%, #2d3748 100%);
+    color: white;
+    padding: 4rem 0;
+    text-align: center;
+  }
+
+  .cta-content h2 {
+    font-size: 2.5rem;
+    margin: 0 0 1rem 0;
+    font-weight: 700;
+    color: white;
+  }
+
+  .cta-content p {
+    font-size: 1.1rem;
+    margin: 0 0 2rem 0;
+    opacity: 0.9;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .cta-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .cta-btn {
+    padding: 1rem 2rem;
+    border-radius: 2rem;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+  }
+
+  .cta-btn.primary {
+    background: var(--primary-color);
+    color: white;
+  }
+
+  .cta-btn.secondary {
+    background: white;
+    color: var(--primary-color);
+  }
+
+  .cta-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px -8px rgba(0, 0, 0, 0.3);
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .page-header {
+      padding: 6rem 0 3rem;
+    }
+
+    .stats-bar {
+      gap: 2rem;
+    }
+
+    .stat-number {
+      font-size: 2rem;
+    }
+
+    .filter-bar {
+      gap: 0.5rem;
+    }
+
+    .filter-btn {
+      padding: 0.6rem 1rem;
+      font-size: 0.9rem;
+    }
+
+    .testimonials-grid {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+
+    .testimonial-card {
+      padding: 1.5rem;
+    }
+
+    .cta-content h2 {
+      font-size: 2rem;
+    }
+
+    .cta-buttons {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .author-info {
+      flex-direction: column;
+      text-align: center;
+      gap: 0.5rem;
+    }
+
+    .card-header {
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .card-footer {
+      flex-direction: column;
+      gap: 0.5rem;
+      text-align: center;
+    }
+  }
+
+  /* Filter Animation */
+  .testimonial-item.fade-out {
+    animation: fadeOut 0.3s ease-out forwards;
+  }
+
+  .testimonial-item.fade-in {
+    animation: fadeIn 0.3s ease-out forwards;
+  }
+
+  @keyframes fadeOut {
+    from { opacity: 1; transform: translateY(0); }
+    to { opacity: 0; transform: translateY(-20px); }
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Filter functionality
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const testimonialItems = document.querySelectorAll('.testimonial-item');
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        // Update active button
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        const filter = btn.getAttribute('data-filter');
+
+        // Filter items
+        testimonialItems.forEach(item => {
+          const location = item.getAttribute('data-location');
+          
+          if (filter === 'all' || location === filter) {
+            item.style.display = 'block';
+            item.classList.remove('fade-out');
+            item.classList.add('fade-in');
+          } else {
+            item.classList.remove('fade-in');
+            item.classList.add('fade-out');
+            setTimeout(() => {
+              item.style.display = 'none';
+            }, 300);
+          }
+        });
+      });
+    });
+
+    // Load more functionality (placeholder)
+    const loadMoreBtn = document.getElementById('load-more-btn');
+    loadMoreBtn?.addEventListener('click', () => {
+      loadMoreBtn.classList.add('loading');
+      
+      // Simulate loading
+      setTimeout(() => {
+        loadMoreBtn.classList.remove('loading');
+        // Here you would load more testimonials
+        loadMoreBtn.style.display = 'none';
+      }, 2000);
+    });
+  });
+</script>

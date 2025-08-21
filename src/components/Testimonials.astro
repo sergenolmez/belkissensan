@@ -1,0 +1,853 @@
+---
+interface Testimonial {
+  id: number;
+  name: string;
+  role: string;
+  content: string;
+  rating: number;
+  location: string;
+  avatar?: string;
+}
+
+interface Props {
+  title?: string;
+  subtitle?: string;
+  testimonials?: Testimonial[];
+  showMore?: boolean;
+}
+
+const {
+  title = "Müşteri Yorumları",
+  subtitle = "Müşterilerimizin Deneyimleri",
+  showMore = true,
+  testimonials = [
+    {
+      id: 1,
+      name: "Ahmet Yılmaz",
+      role: "Ev Sahibi",
+      content: "Belkıs Hanım ile çalışmak gerçekten harika bir deneyimdi. Profesyonel yaklaşımı ve sabırlı rehberliği sayesinde hayalimizdeeki evi bulduk. Sürekli bizimle iletişim halinde kaldı ve her adımda yanımızda oldu.",
+      rating: 5,
+      location: "Aydın Merkez",
+      avatar: "👨‍💼"
+    },
+    {
+      id: 2,
+      name: "Zeynep Kaya",
+      role: "Yatırımcı",
+      content: "Kuşadası'nda yatırım amaçlı mülk aramam sürecinde çok yardımcı oldu. Piyasayı çok iyi biliyor ve doğru yönlendirmeler yapıyor. Aldığım dairenin değeri kısa sürede arttı.",
+      rating: 5,
+      location: "Kuşadası",
+      avatar: "👩‍💼"
+    },
+    {
+      id: 3,
+      name: "Mehmet Özkan",
+      role: "İş İnsanı",
+      content: "Didim'de villa satın alma sürecinde her detayı titizlikle takip etti. Hukuki süreçlerden finansal konulara kadar her konuda bilgili. Kesinlikle tavsiye ederim.",
+      rating: 5,
+      location: "Didim",
+      avatar: "👨‍💻"
+    }
+  ]
+} = Astro.props as Props;
+---
+
+<section class="testimonials-section" aria-labelledby="testimonials-title">
+  <div class="testimonials-container">
+    <!-- Header -->
+    <div class="testimonials-header">
+      <span class="testimonials-subtitle">{subtitle}</span>
+      <h2 id="testimonials-title" class="testimonials-title">{title}</h2>
+      <div class="header-decoration">
+        <div class="decoration-line"></div>
+        <div class="decoration-dot"></div>
+      </div>
+    </div>
+
+    <!-- Testimonials Slider -->
+    <div class="testimonials-slider" data-testimonials-slider>
+      <div class="testimonials-track" data-track>
+        {testimonials.map((testimonial, index) => (
+          <div class="testimonial-card" data-card data-index={index}>
+            <div class="card-content">
+              <!-- Rating -->
+              <div class="rating">
+                {Array.from({ length: 5 }, (_, i) => (
+                  <span class={`star ${i < testimonial.rating ? 'filled' : ''}`}>★</span>
+                ))}
+              </div>
+              
+              <!-- Quote -->
+              <div class="quote-mark">"</div>
+              <blockquote class="testimonial-content">
+                {testimonial.content}
+              </blockquote>
+              
+              <!-- Author -->
+              <div class="author-info">
+                <div class="author-avatar">{testimonial.avatar}</div>
+                <div class="author-details">
+                  <h4 class="author-name">{testimonial.name}</h4>
+                  <p class="author-role">{testimonial.role}</p>
+                  <p class="author-location">📍 {testimonial.location}</p>
+                </div>
+              </div>
+              
+              <!-- Card Decoration -->
+              <div class="card-decoration"></div>
+            </div>
+          </div>
+        ))}
+      </div>
+      
+      <!-- Navigation -->
+      <div class="slider-nav">
+        <button class="nav-btn prev-btn" data-prev aria-label="Önceki yorum">
+          <span>←</span>
+        </button>
+        <div class="slider-dots" data-dots>
+          {testimonials.map((_, index) => (
+            <button 
+              class={`dot ${index === 0 ? 'active' : ''}`} 
+              data-dot={index}
+              aria-label={`${index + 1}. yoruma git`}
+            ></button>
+          ))}
+        </div>
+        <button class="nav-btn next-btn" data-next aria-label="Sonraki yorum">
+          <span>→</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Show More Button -->
+    {showMore && (
+      <div class="show-more">
+        <a href="/yorumlar" class="show-more-btn">
+          <span>Tüm Yorumları Gör</span>
+          <div class="btn-icon">→</div>
+        </a>
+      </div>
+    )}
+
+    <!-- Background Elements -->
+    <div class="bg-elements" aria-hidden="true">
+      <div class="bg-circle bg-circle-1"></div>
+      <div class="bg-circle bg-circle-2"></div>
+      <div class="bg-quotes">
+        <div class="bg-quote bg-quote-1">"</div>
+        <div class="bg-quote bg-quote-2">"</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .testimonials-section {
+    position: relative;
+    padding: 6rem 0;
+    background: linear-gradient(135deg, #ffffff 0%, #f8fafc 50%, #f1f5f9 100%);
+    overflow: hidden;
+  }
+
+  .testimonials-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    position: relative;
+    z-index: 2;
+  }
+
+  /* Header */
+  .testimonials-header {
+    text-align: center;
+    
+  }
+
+  .testimonials-subtitle {
+    display: inline-block;
+    padding: 0.5rem 1.5rem;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: white;
+    font-size: 0.9rem;
+    font-weight: 600;
+    border-radius: 2rem;
+    margin-bottom: 1rem;
+    letter-spacing: 0.5px;
+  }
+
+  .testimonials-title {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    margin: 0;
+    color: var(--dark-color);
+    margin-bottom: 1rem;
+  }
+
+  .header-decoration {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+
+  .decoration-line {
+    width: 60px;
+    height: 2px;
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+    border-radius: 1px;
+  }
+
+  .decoration-dot {
+    width: 8px;
+    height: 8px;
+    background: var(--secondary-color);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.2); opacity: 0.8; }
+  }
+
+  /* Slider */
+  .testimonials-slider {
+    position: relative;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 2rem 0;
+  }
+
+  .testimonials-track {
+    position: relative;
+    height: 450px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    perspective: 1000px;
+  }
+
+  .testimonial-card {
+    position: absolute;
+    width: 350px;
+    height: 400px;
+    transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transform-style: preserve-3d;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  /* Center card (active) - Large */
+  .testimonial-card.center {
+    opacity: 1;
+    transform: translateX(0) scale(1) translateZ(0);
+    z-index: 3;
+    pointer-events: auto;
+  }
+
+  /* Left card - Small */
+  .testimonial-card.left {
+    opacity: 0.6;
+    transform: translateX(-280px) scale(0.8) rotateY(25deg) translateZ(-100px);
+    z-index: 1;
+    pointer-events: auto;
+  }
+
+  /* Right card - Small */
+  .testimonial-card.right {
+    opacity: 0.6;
+    transform: translateX(280px) scale(0.8) rotateY(-25deg) translateZ(-100px);
+    z-index: 1;
+    pointer-events: auto;
+  }
+
+  /* Hidden cards */
+  .testimonial-card.hidden {
+    opacity: 0;
+    transform: scale(0.5) translateZ(-200px);
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .card-content {
+    background: white;
+    padding: 2.5rem;
+    border-radius: 20px;
+    box-shadow: 
+      0 20px 40px -20px rgba(0, 0, 0, 0.15),
+      0 0 0 1px rgba(255, 255, 255, 0.5);
+    position: relative;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden;
+    transition: all 0.3s ease;
+  }
+
+  /* Center card hover effect */
+  .testimonial-card.center .card-content {
+    box-shadow: 
+      0 30px 60px -20px rgba(0, 0, 0, 0.2),
+      0 0 0 1px rgba(255, 255, 255, 0.8);
+  }
+
+  /* Side cards styling */
+  .testimonial-card.left .card-content,
+  .testimonial-card.right .card-content {
+    padding: 2rem;
+  }
+
+  .testimonial-card.left .testimonial-content,
+  .testimonial-card.right .testimonial-content {
+    font-size: clamp(0.8rem, 0.9rem, 1rem);
+    line-height: 1.5;
+    -webkit-line-clamp: 5;
+    max-height: 120px;
+  }
+
+  .testimonial-card.left .testimonial-content.long-text,
+  .testimonial-card.right .testimonial-content.long-text {
+    font-size: clamp(0.75rem, 0.85rem, 0.95rem);
+    line-height: 1.4;
+    -webkit-line-clamp: 6;
+    max-height: 130px;
+  }
+
+  .testimonial-card.left .testimonial-content.very-long-text,
+  .testimonial-card.right .testimonial-content.very-long-text {
+    font-size: clamp(0.7rem, 0.8rem, 0.9rem);
+    line-height: 1.3;
+    -webkit-line-clamp: 7;
+    max-height: 140px;
+  }
+
+  .testimonial-card.left .author-name,
+  .testimonial-card.right .author-name {
+    font-size: 1rem;
+  }
+
+  .testimonial-card.left .author-avatar,
+  .testimonial-card.right .author-avatar {
+    width: 50px;
+    height: 50px;
+    font-size: 1.2rem;
+  }
+
+  /* Rating */
+  .rating {
+    display: flex;
+    gap: 0.2rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .star {
+    font-size: 1.2rem;
+    color: #ddd;
+    transition: color 0.3s ease;
+  }
+
+  .star.filled {
+    color: #fbbf24;
+  }
+
+  /* Quote */
+  .quote-mark {
+    position: absolute;
+    top: 1rem;
+    right: 2rem;
+    font-size: 4rem;
+    color: var(--primary-color);
+    opacity: 0.1;
+    font-family: serif;
+    line-height: 1;
+  }
+
+  .testimonial-content {
+    font-size: clamp(0.9rem, 1.1rem, 1.2rem);
+    line-height: 1.6;
+    color: var(--dark-color);
+    margin: 0 0 2rem 0;
+    font-style: italic;
+    position: relative;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 6;
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis;
+    max-height: 150px;
+  }
+
+  /* Dynamic font scaling based on content length */
+  .testimonial-content.long-text {
+    font-size: clamp(0.85rem, 1rem, 1.1rem);
+    line-height: 1.5;
+    -webkit-line-clamp: 7;
+    max-height: 160px;
+  }
+
+  .testimonial-content.very-long-text {
+    font-size: clamp(0.8rem, 0.95rem, 1rem);
+    line-height: 1.4;
+    -webkit-line-clamp: 8;
+    max-height: 170px;
+  }
+
+  /* Author */
+  .author-info {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .author-avatar {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    flex-shrink: 0;
+  }
+
+  .author-details {
+    flex: 1;
+  }
+
+  .author-name {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin: 0 0 0.2rem 0;
+    color: var(--dark-color);
+  }
+
+  .author-role {
+    font-size: 0.9rem;
+    color: var(--primary-color);
+    margin: 0 0 0.2rem 0;
+    font-weight: 500;
+  }
+
+  .author-location {
+    font-size: 0.85rem;
+    color: #666;
+    margin: 0;
+  }
+
+  /* Card Decoration */
+  .card-decoration {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+    transform: scaleX(0);
+    transform-origin: left;
+    animation: fillLine 1s ease-out 0.5s forwards;
+  }
+
+  @keyframes fillLine {
+    to { transform: scaleX(1); }
+  }
+
+  /* Navigation */
+  .slider-nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 3rem;
+  }
+
+  .nav-btn {
+    width: 50px;
+    height: 50px;
+    border: none;
+    background: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px -5px rgba(0, 0, 0, 0.1);
+    font-size: 1.2rem;
+    color: var(--primary-color);
+  }
+
+  .nav-btn:hover {
+    background: var(--primary-color);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px -8px rgba(0, 0, 0, 0.15);
+  }
+
+  .nav-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+  }
+
+  .slider-dots {
+    display: flex;
+    gap: 0.8rem;
+  }
+
+  .dot {
+    width: 12px;
+    height: 12px;
+    border: none;
+    border-radius: 50%;
+    background: #ddd;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .dot.active {
+    background: var(--primary-color);
+    transform: scale(1.2);
+  }
+
+  .dot:hover {
+    background: var(--secondary-color);
+  }
+
+  /* Show More */
+  .show-more {
+    text-align: center;
+    margin-top: 3rem;
+  }
+
+  .show-more-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 25px -8px rgba(0, 0, 0, 0.2);
+  }
+
+  .show-more-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 35px -10px rgba(0, 0, 0, 0.25);
+  }
+
+  .btn-icon {
+    transition: transform 0.3s ease;
+  }
+
+  .show-more-btn:hover .btn-icon {
+    transform: translateX(5px);
+  }
+
+  /* Background Elements */
+  .bg-elements {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .bg-circle {
+    position: absolute;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    opacity: 0.03;
+  }
+
+  .bg-circle-1 {
+    width: 300px;
+    height: 300px;
+    top: -50px;
+    right: -100px;
+    animation: floatSlow 8s ease-in-out infinite;
+  }
+
+  .bg-circle-2 {
+    width: 200px;
+    height: 200px;
+    bottom: -50px;
+    left: -50px;
+    animation: floatSlow 8s ease-in-out infinite reverse;
+  }
+
+  @keyframes floatSlow {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-30px) rotate(180deg); }
+  }
+
+  .bg-quotes {
+    position: absolute;
+    inset: 0;
+  }
+
+  .bg-quote {
+    position: absolute;
+    font-size: 12rem;
+    font-family: serif;
+    color: var(--primary-color);
+    opacity: 0.02;
+    pointer-events: none;
+  }
+
+  .bg-quote-1 {
+    top: 10%;
+    left: 5%;
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .bg-quote-2 {
+    bottom: 10%;
+    right: 5%;
+    animation: float 6s ease-in-out infinite reverse;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+  }
+
+  /* Responsive */
+  @media (max-width: 1024px) {
+    .testimonials-slider {
+      max-width: 900px;
+    }
+    
+    .testimonial-card {
+      width: 320px;
+      height: 380px;
+    }
+
+    .testimonial-card.left {
+      transform: translateX(-250px) scale(0.8) rotateY(20deg) translateZ(-80px);
+    }
+
+    .testimonial-card.right {
+      transform: translateX(250px) scale(0.8) rotateY(-20deg) translateZ(-80px);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .testimonials-section {
+      padding: 4rem 0;
+    }
+
+    .testimonials-container {
+      padding: 0 1rem;
+    }
+
+    .testimonials-slider {
+      max-width: 600px;
+    }
+
+    .testimonials-track {
+      height: 400px;
+      perspective: 800px;
+    }
+
+    .testimonial-card {
+      width: 280px;
+      height: 350px;
+    }
+
+    .testimonial-card.left {
+      transform: translateX(-200px) scale(0.75) rotateY(15deg) translateZ(-60px);
+    }
+
+    .testimonial-card.right {
+      transform: translateX(200px) scale(0.75) rotateY(-15deg) translateZ(-60px);
+    }
+
+    .card-content {
+      padding: 2rem;
+    }
+
+    .testimonial-content {
+      font-size: clamp(0.85rem, 1vw, 0.95rem);
+    }
+
+    .testimonial-content.long-text {
+      font-size: clamp(0.8rem, 0.9vw, 0.9rem);
+    }
+
+    .testimonial-content.very-long-text {
+      font-size: clamp(0.75rem, 0.85vw, 0.85rem);
+    }
+
+    .slider-nav {
+      gap: 1rem;
+    }
+
+    .nav-btn {
+      width: 45px;
+      height: 45px;
+    }
+
+    .bg-quote {
+      font-size: 8rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .testimonials-track {
+      height: 420px;
+    }
+
+    .testimonial-card {
+      width: 260px;
+      height: 320px;
+    }
+
+    .testimonial-card.left {
+      transform: translateX(-150px) scale(0.7) rotateY(10deg) translateZ(-40px);
+    }
+
+    .testimonial-card.right {
+      transform: translateX(150px) scale(0.7) rotateY(-10deg) translateZ(-40px);
+    }
+
+    .card-content {
+      padding: 1.5rem;
+    }
+
+    .testimonial-content {
+      font-size: clamp(0.8rem, 1vw, 0.9rem);
+    }
+
+    .testimonial-content.long-text {
+      font-size: clamp(0.75rem, 0.9vw, 0.85rem);
+    }
+
+    .testimonial-content.very-long-text {
+      font-size: clamp(0.7rem, 0.8vw, 0.8rem);
+    }
+
+    .author-info {
+      flex-direction: column;
+      text-align: center;
+      gap: 0.5rem;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const slider = document.querySelector('[data-testimonials-slider]');
+    if (!slider) return;
+
+    const track = slider.querySelector('[data-track]');
+    if (!track) return;
+    
+    const cards = track.querySelectorAll('[data-card]');
+    const dots = slider.querySelectorAll('[data-dot]');
+    const prevBtn = slider.querySelector('[data-prev]');
+    const nextBtn = slider.querySelector('[data-next]');
+
+    let currentIndex = 1; // Start with middle card (index 1)
+    let isAnimating = false;
+
+    // Function to adjust text size based on content length
+    function adjustTextSize() {
+      cards.forEach(card => {
+        const testimonialContent = card.querySelector('.testimonial-content');
+        if (testimonialContent) {
+          const textLength = testimonialContent.textContent.length;
+          
+          // Remove existing classes
+          testimonialContent.classList.remove('long-text', 'very-long-text');
+          
+          // Add classes based on text length
+          if (textLength > 250) {
+            testimonialContent.classList.add('very-long-text');
+          } else if (textLength > 150) {
+            testimonialContent.classList.add('long-text');
+          }
+        }
+      });
+    }
+
+    function updateSlider() {
+      if (isAnimating) return;
+      isAnimating = true;
+
+      cards.forEach((card, index) => {
+        // Remove all classes
+        card.classList.remove('center', 'left', 'right', 'hidden');
+        
+        const relativeIndex = (index - currentIndex + cards.length) % cards.length;
+        
+        if (relativeIndex === 0) {
+          // Center card
+          card.classList.add('center');
+        } else if (relativeIndex === cards.length - 1) {
+          // Left card (previous)
+          card.classList.add('left');
+        } else if (relativeIndex === 1) {
+          // Right card (next)
+          card.classList.add('right');
+        } else {
+          // Hidden cards
+          card.classList.add('hidden');
+        }
+      });
+
+      // Update dots
+      dots.forEach((dot, index) => {
+        dot.classList.toggle('active', index === currentIndex);
+      });
+
+      setTimeout(() => {
+        isAnimating = false;
+      }, 600);
+    }
+
+    function goToSlide(index: number) {
+      if (index < 0) index = cards.length - 1;
+      if (index >= cards.length) index = 0;
+      currentIndex = index;
+      updateSlider();
+    }
+
+    function nextSlide() {
+      goToSlide(currentIndex + 1);
+    }
+
+    function prevSlide() {
+      goToSlide(currentIndex - 1);
+    }
+
+    // Event listeners
+    nextBtn?.addEventListener('click', nextSlide);
+    prevBtn?.addEventListener('click', prevSlide);
+
+    dots.forEach((dot, index) => {
+      dot.addEventListener('click', () => goToSlide(index));
+    });
+
+    // Click on side cards to navigate
+    cards.forEach((card, index) => {
+      card.addEventListener('click', () => {
+        if (card.classList.contains('left') || card.classList.contains('right')) {
+          goToSlide(index);
+        }
+      });
+    });
+
+    // Auto-play
+    setInterval(nextSlide, 5000);
+
+    // Initialize
+    adjustTextSize();
+    updateSlider();
+  });
+</script>

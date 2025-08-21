@@ -1,5 +1,203 @@
-<footer class="site-footer">
-  <div class="container">
-    <p>&copy; {new Date().getFullYear()} Aydın Emlak. Tüm hakları saklıdır.</p>
+---
+// Gelecekte konfigürasyon dışarı alınabilir.
+const year = new Date().getFullYear();
+const company = {
+  name: 'Belkıs Şensan',
+  slogan: 'Güvenilir, Şeffaf, Yenilikçi Gayrimenkul Danışmanlığı',
+  phone: '+90 555 555 55 55',
+  email: 'info@aydin-emlak.com',
+  whatsapp: '+905555555555',
+  address: 'Örnek Mah. Örnek Cad. No:10 Aydın / Türkiye',
+  hours: [
+    { day: 'Pazartesi-Cuma', time: '09:00 - 19:00' },
+    { day: 'Cumartesi', time: '10:00 - 16:00' },
+    { day: 'Pazar', time: 'Kapalı' }
+  ],
+  social: {
+    instagram: 'https://instagram.com/aydin_emlak',
+    facebook: 'https://facebook.com/aydin-emlak',
+    linkedin: 'https://linkedin.com/company/aydin-emlak',
+    youtube: 'https://youtube.com/@aydin-emlak'
+  }
+};
+// TR gün -> EN gün eşleme ve aralık parse
+const dayMap: Record<string,string> = { 'Pazartesi':'Monday','Salı':'Tuesday','Sali':'Tuesday','Çarşamba':'Wednesday','Carsamba':'Wednesday','Perşembe':'Thursday','Persembe':'Thursday','Cuma':'Friday','Cumartesi':'Saturday','Pazar':'Sunday' };
+function expandDaySpan(span: string){
+  if(!span.includes('-')) return [span];
+  const [start,end] = span.split('-');
+  const order = ['Pazartesi','Salı','Çarşamba','Perşembe','Cuma','Cumartesi','Pazar'];
+  const si = order.indexOf(start); const ei = order.indexOf(end);
+  if(si===-1||ei===-1||ei<si) return [span];
+  return order.slice(si,ei+1);
+}
+const openingHoursSpecification = company.hours
+  .filter(h=>h.time !== 'Kapalı')
+  .flatMap(h=>{
+    return expandDaySpan(h.day).map(d => ({
+      '@type':'OpeningHoursSpecification',
+      dayOfWeek: dayMap[d] || d,
+      opens: h.time.split('-')[0].trim(),
+      closes: h.time.split('-')[1].trim()
+    }));
+  });
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'RealEstateAgent',
+  name: company.name,
+  description: company.slogan,
+  email: company.email,
+  telephone: company.phone.replace(/\s+/g,''),
+  url: Astro.site ?? undefined,
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: 'Örnek Cad. No:10',
+    addressLocality: 'Aydın',
+    addressRegion: 'Aydın',
+    addressCountry: 'TR'
+  },
+  areaServed: 'Türkiye',
+  openingHoursSpecification,
+  sameAs: Object.values(company.social)
+};
+
+// UI için gün kısaltmaları ve genişletilmiş saat listesi
+const dayAbbr: Record<string,string> = { 'Pazartesi':'Pzt', 'Salı':'Sal', 'Sali':'Sal', 'Çarşamba':'Çar', 'Carsamba':'Çar', 'Perşembe':'Per', 'Persembe':'Per', 'Cuma':'Cum', 'Cumartesi':'Cmt', 'Pazar':'Paz' };
+const uiHours = company.hours.flatMap(h => {
+  if(h.time === 'Kapalı') return [{ day: h.day, time: h.time }];
+  if(h.day.includes('-')) {
+    return expandDaySpan(h.day).map(d => ({ day: d, time: h.time }));
+  }
+  return [h];
+});
+---
+
+<footer class="site-footer enhanced-footer" data-footer>
+  
+  <div class="container footer-grid">
+    <div class="footer-brand">
+  <a href="/" class="footer-logo" aria-label={`${company.name} anasayfa`}>
+        <img src="/assets/img/belkis-sensan-logo.png" alt={`${company.name} Logo`} loading="lazy" width="300" height="64" />
+      </a>
+      <p class="slogan">{company.slogan}</p>
+      <address class="address" translate="no">{company.address}</address>
+      <ul class="contact-list" aria-label="İletişim Bilgileri">
+        <li><a href={`tel:${company.phone.replace(/\s+/g,'')}`}>{company.phone}</a></li>
+        <li><a href={`mailto:${company.email}`}>{company.email}</a></li>
+  <li><a href={`https://wa.me/${company.whatsapp.replace(/[^\d]/g,'')}`} rel="noopener noreferrer" target="_blank">WhatsApp</a></li>
+      </ul>
+      <ul class="social" aria-label="Sosyal Medya">
+  <li><a href={company.social.instagram} target="_blank" rel="noopener noreferrer" aria-label="Instagram"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.5" y2="6.5"/></svg></a></li>
+  <li><a href={company.social.facebook} target="_blank" rel="noopener noreferrer" aria-label="Facebook"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22 12.07C22 6.48 17.52 2 11.93 2S1.86 6.48 1.86 12.07c0 4.99 3.64 9.13 8.4 9.93v-7.03H7.9v-2.9h2.36V9.96c0-2.33 1.39-3.62 3.52-3.62 1.02 0 2.09.18 2.09.18v2.3h-1.18c-1.16 0-1.52.72-1.52 1.46v1.75h2.59l-.41 2.9h-2.18V22c4.76-.8 8.4-4.94 8.4-9.93Z"/></svg></a></li>
+  <li><a href={company.social.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5C4.98 4.6 4.1 5.5 3 5.5S1 4.6 1 3.5 1.9 1.5 3 1.5s1.98.9 1.98 2zM1.5 8h3V22h-3V8zm7 0h2.9v1.7h.04c.4-.8 1.4-1.6 2.9-1.6 3.1 0 3.7 2 3.7 4.7V22h-3v-7c0-1.7 0-3.8-2.3-3.8s-2.7 1.8-2.7 3.7V22h-3V8z"/></svg></a></li>
+  <li><a href={company.social.youtube} target="_blank" rel="noopener noreferrer" aria-label="YouTube"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.5 6.2s-.2-1.7-.8-2.5c-.7-.9-1.5-.9-1.9-1C17.9 2.3 12 2.3 12 2.3s-5.9 0-8.8.4c-.4.1-1.2.1-1.9 1-.6.8-.8 2.5-.8 2.5S0 8.3 0 10.5v2.1c0 2.2.2 4.3.2 4.3s.2 1.7.8 2.5c.7.9 1.6.9 2 1 1.5.1 8.6.4 8.6.4s5.9 0 8.8-.4c.4-.1 1.2-.1 1.9-1 .6-.8.8-2.5.8-2.5s.2-2.2.2-4.3v-2.1c0-2.2-.2-4.3-.2-4.3ZM9.6 14.9V8.7l5.7 3.1-5.7 3.1Z"/></svg></a></li>
+      </ul>
+      
+    </div>
+
+    <nav class="footer-nav" aria-label="Site Haritası">
+      <div class="nav-col">
+        <h3>Kurumsal</h3>
+        <ul>
+          <li><a href="/hakkimizda">Hakkımızda</a></li>
+          <li><a href="/hizmetler">Hizmetler</a></li>
+          <li><a href="/iletisim">İletişim</a></li>
+          <li><a href="/">Anasayfa</a></li>
+        </ul>
+      </div>
+      <div class="nav-col">
+        <h3>Hizmetler</h3>
+        <ul>
+          <li><a href="/hizmetler#danismanlik">Danışmanlık</a></li>
+          <li><a href="/hizmetler#yatirim">Yatırım Analizi</a></li>
+          <li><a href="/hizmetler#pazarlama">Pazarlama</a></li>
+          <li><a href="/hizmetler#degerleme">Değerleme</a></li>
+        </ul>
+      </div>
+      <div class="nav-col">
+        <div class="hours" aria-label="Çalışma Saatleri">
+    {uiHours.map(h => <div class={`hour-row${h.time==='Kapalı' ? ' closed' : ''}`}><span class="hr-day">{dayAbbr[h.day] || h.day}:</span><span class="hr-time">{h.time}</span></div>)}
+      </div>
+      
+      
+      
+      </div>
+    </nav>
+
+    
   </div>
+  <div class="container footer-bottom">
+    <p class="legal">© {year} {company.name}. Tüm hakları saklıdır.</p>
+    <div class="legal-links">
+  <a href="#" aria-disabled="true" tabindex="-1">Gizlilik</a>
+  <a href="#" aria-disabled="true" tabindex="-1">Çerezler</a>
+  <a href="#" aria-disabled="true" tabindex="-1">Kullanım Şartları</a>
+    </div>
+  <button class="back-to-top" aria-label="Yukarı dön" data-back-top hidden><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="18 15 12 9 6 15"/><line x1="12" y1="9" x2="12" y2="21"/></svg></button>
+  </div>
+  <script type="application/ld+json" is:inline>{JSON.stringify(jsonLd)}</script>
 </footer>
+
+<style is:global>
+  .enhanced-footer { position:relative;  background:linear-gradient(
+205deg, #0f172a 0%, #153264 55%, #0f172a 100%); color:#e2e8f0; padding-top:4rem; font-size:.95rem; }
+  .footer-top-curve{position:absolute;top:-70px;left:0;width:100%;pointer-events:none;}
+  .curve-svg{display:block;width:100%;height:80px;}
+  .footer-grid{display:grid;gap:3rem;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));}
+  .footer-brand .slogan{font-weight:600;line-height:1.3;color: white !important;-webkit-background-clip:text;color:transparent;margin:.75rem 0 1rem;}
+  .footer-brand .address{font-style:normal;opacity:.85;margin-bottom:1rem;}
+  .contact-list{list-style:none;padding:0;margin:0 0 1.25rem;display:flex;flex-direction:column;gap:.35rem;}
+  .contact-list a{color:#fff;text-decoration:none;font-weight:500;}
+  .contact-list a:hover{color:var(--secondary-color);}
+  .hours{display:flex;flex-direction:column;gap:.25rem;font-size:.8rem;background:rgba(255,255,255,.05);padding:.6rem .8rem;border:1px solid rgba(255,255,255,.08);border-radius:8px;}
+  .hour-row{display:flex;justify-content:space-between;gap:1rem;}
+  .footer-nav{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:2rem;}
+  .footer-nav h3,.footer-newsletter h3{font-size:1rem;margin:0 0 .75rem;font-weight:600;letter-spacing:.5px;color:#fff;}
+  .footer-nav ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:.4rem;}
+  .footer-nav a{color:#e2e8f0;text-decoration:none;position:relative;}
+  .footer-nav a::after{content:"";position:absolute;left:0;bottom:-2px;height:2px;width:100%;background:linear-gradient(90deg,var(--primary-color),var(--secondary-color));transform:scaleX(0);transform-origin:left;transition:transform .35s cubic-bezier(.65,.05,.36,1);}
+  .footer-nav a:hover::after{transform:scaleX(1);}
+  .footer-nav a[aria-disabled='true']{opacity:.4;pointer-events:none;}
+  .footer-newsletter p{margin:0 0 1rem;max-width:340px;}
+  .newsletter-form{display:flex;flex-direction:column;gap:.6rem;align-items:start;}
+  .newsletter-form input{width:100%;padding:.75rem .9rem;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.08);backdrop-filter:blur(4px);border-radius:10px;color:#fff;font:inherit;outline:none;transition:border-color .3s, background .3s;}
+  .newsletter-form input:focus{border-color:var(--primary-color);background:rgba(255,255,255,.15);}
+  .btn-submit{background:linear-gradient(135deg,var(--primary-color),var(--secondary-color));color:#fff;border:none;padding:.7rem 1.1rem;cursor:pointer;font-weight:600;border-radius:8px;display:inline-flex;align-items:center;gap:.4rem;font-size:.85rem;letter-spacing:.5px;box-shadow:0 4px 18px -4px rgba(0,0,0,.4);transition:transform .35s, box-shadow .35s;}
+  .btn-submit:hover{transform:translateY(-2px);box-shadow:0 8px 24px -8px rgba(0,0,0,.55);}
+  .nl-status{font-size:.7rem;min-height:1em;color:var(--secondary-color);}
+  .social{list-style:none;padding:0;margin:1.5rem 0 0;display:flex;gap:.75rem; display: flex; justify-content: center; align-items: center;}
+  .social a{display:grid;place-items:center;width:36px;height:36px;border-radius:10px;background:rgba(255,255,255,.08);color:#fff;transition:background .35s, transform .35s;}
+  .social a:hover{background:linear-gradient(135deg,var(--primary-color),var(--secondary-color));transform:translateY(-3px);}
+  .footer-bottom{display:flex;flex-wrap:wrap;gap:1rem;align-items:center;justify-content:space-between;margin-top:3rem;padding-top:1.75rem;padding-bottom:1.5rem;border-top:1px solid rgba(255,255,255,.12);font-size:.75rem;letter-spacing:.3px;}
+  .legal{margin:0;opacity:.85;}
+  .legal-links{display:flex;gap:1rem;}
+  .legal-links a{color:#94a3b8;text-decoration:none;position:relative;}
+  .legal-links a::after{content:"";position:absolute;left:0;bottom:-2px;width:100%;height:1px;background:currentColor;transform:scaleX(0);transform-origin:left;transition:transform .35s;}
+  .legal-links a:hover::after{transform:scaleX(1);}
+  .back-to-top{position:fixed;right:1.25rem;bottom:1.25rem;background:linear-gradient(135deg,var(--primary-color),var(--secondary-color));color:#fff;border:none;width:46px;height:46px;border-radius:14px;cursor:pointer;display:grid;place-items:center;box-shadow:0 4px 18px -4px rgba(0,0,0,.55);transition:transform .4s, box-shadow .4s, opacity .4s;opacity:0;pointer-events:none;}
+  .back-to-top.show{opacity:1;pointer-events:auto;}
+  .back-to-top:hover{transform:translateY(-4px);box-shadow:0 10px 28px -6px rgba(0,0,0,.65);}
+  .footer-logo img{filter:drop-shadow(0 4px 12px rgba(0,0,0,.4));}
+  @media (max-width:900px){
+    .footer-grid{gap:2.5rem;}
+    .footer-bottom{flex-direction:column;align-items:flex-start;}
+    .back-to-top{right:.9rem;bottom:.9rem;}
+  }
+  @media (prefers-reduced-motion: reduce){
+    .footer-nav a::after, .btn-submit, .social a, .back-to-top{transition:none !important;}
+  }
+  
+</style>
+
+<script is:inline>
+  (function(){
+    const btn = document.querySelector('[data-back-top]');
+    if(!btn) return;
+    const toggle = () => {
+      if(window.scrollY > 320){ btn.classList.add('show'); btn.hidden=false; }
+      else { btn.classList.remove('show'); }
+    };
+    window.addEventListener('scroll', toggle, { passive:true });
+    toggle();
+    btn.addEventListener('click', ()=> { window.scrollTo({ top:0, behavior:'smooth' }); });
+  })();
+</script>

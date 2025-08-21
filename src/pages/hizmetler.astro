@@ -1,23 +1,600 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 ---
+
 <BaseLayout
-  title="Hizmetler"
-  description="Satılık ve kiralık emlak hizmetleri, değerleme, danışmanlık ve daha fazlası."
+  title="Gayrimenkul Hizmetleri Aydın | Satış - Kiralama - Yatırım Danışmanlığı | RE/MAX Pasha"
+  description="Aydın'da gayrimenkul satış, kiralama, yatırım danışmanlığı ve mülk değerleme hizmetleri. RE/MAX Pasha garantisiyle profesyonel emlak çözümleri. Kuşadası, Didim, Nazilli'de hizmet."
 >
-  <h1>Hizmetlerimiz</h1>
-  <div class="services-list">
-    <article>
-      <h2>Satılık ve Kiralık Mülkler</h2>
-      <p>Aydın’da satılık ve kiralık daire, villa, arsa ve ticari mülk seçenekleri.</p>
-    </article>
-    <article>
-      <h2>Mülk Değerleme</h2>
-      <p>Uzman ekibimizle piyasa koşullarına göre doğru değerleme.</p>
-    </article>
-    <article>
-      <h2>Danışmanlık ve Yatırım</h2>
-      <p>Yatırımcılar için kapsamlı danışmanlık hizmeti.</p>
-    </article>
-  </div>
+  <main class="services-page">
+    <!-- Hero Section -->
+    <section class="hero-section">
+      <div class="hero-container">
+        <div class="hero-content">
+          <span class="hero-subtitle">RE/MAX Pasha Aydın</span>
+          <h1 class="hero-title">Gayrimenkul Hizmetlerimiz</h1>
+          <p class="hero-description">
+            Aydın, Kuşadası, Didim ve çevresinde profesyonel gayrimenkul satış,
+            kiralama ve yatırım danışmanlığı hizmetleri. RE/MAX güvencesiyle
+            emlak ihtiyaçlarınızın tamamı için yanınızdayız.
+          </p>
+          <div class="hero-keywords">
+            <span class="keyword">🏠 Satış Danışmanlığı</span>
+            <span class="keyword">🔑 Kiralama Hizmetleri</span>
+            <span class="keyword">💰 Yatırım Danışmanlığı</span>
+            <span class="keyword">📋 Hukuki Destek</span>
+          </div>
+        </div>
+        <div class="hero-visual">
+          <div class="hero-shapes">
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+            <div class="shape shape-3"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Main Services -->
+  <section class="main-services">
+    <div class="services-container">
+      <div class="section-header">
+        <h2>Ana Gayrimenkul Hizmetlerimiz</h2>
+        <p>
+          Aydın ve çevresinde gayrimenkul sektöründe 10+ yıllık deneyimle
+          profesyonel hizmet
+        </p>
+      </div>
+
+      <div class="services-grid">
+        <!-- Satış Hizmetleri -->
+        <article class="service-card featured" id="satis-hizmetleri">
+          <div class="service-icon">🏠</div>
+          <h3>Gayrimenkul Satış Hizmetleri</h3>
+          <div class="service-content">
+            <p>
+              <strong>Aydın gayrimenkul satış</strong> konusunda uzman ekibimizle
+              mülkünüzü en uygun fiyatta ve hızlı şekilde satıyoruz.
+              <strong>Kuşadası villa satışı</strong>, <strong
+                >Didim apartman satışı</strong
+              > ve <strong>Aydın merkez daire satışı</strong>
+              için profesyonel danışmanlık.
+            </p>
+            <ul class="service-features">
+              <li><strong>Aydın satılık daire</strong> portföyü</li>
+              <li><strong>Kuşadası satılık villa</strong> seçenekleri</li>
+              <li><strong>Didim satılık ev</strong> alternatifleri</li>
+              <li><strong>Nazilli satılık arsa</strong> imkanları</li>
+              <li>Mülk değerleme ve fiyat analizi</li>
+              <li>Hukuki işlemler ve tapu devri</li>
+              <li>Fotoğraf çekimi ve ilan hazırlama</li>
+              <li>Pazarlama ve tanıtım hizmetleri</li>
+            </ul>
+            <div class="service-cta">
+              <a href="/iletisim" class="cta-btn">Mülkünüzü Sattırın</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Kiralama Hizmetleri -->
+        <article class="service-card" id="kiralama-hizmetleri">
+          <div class="service-icon">🔑</div>
+          <h3>Gayrimenkul Kiralama Hizmetleri</h3>
+          <div class="service-content">
+            <p>
+              <strong>Aydın kiralık daire</strong> ve <strong
+                >Kuşadası kiralık ev</strong
+              > arayışında olanlara geniş portföyümüzle hizmet veriyoruz.
+              <strong>Emlak kiralama Aydın</strong> konusunda güvenilir çözümler
+              sunuyoruz.
+            </p>
+            <ul class="service-features">
+              <li><strong>Aydın kiralık daire</strong> seçenekleri</li>
+              <li><strong>Kuşadası kiralık villa</strong> imkanları</li>
+              <li><strong>Didim kiralık apartman</strong> alternatifleri</li>
+              <li>Kısa ve uzun dönem kiralama</li>
+              <li>Kiracı ve ev sahibi güvencesi</li>
+              <li>Kira kontratı hazırlama</li>
+              <li>Mülk yönetimi hizmetleri</li>
+              <li>Sigorta ve hasar takibi</li>
+            </ul>
+            <div class="service-cta">
+              <a href="/iletisim" class="cta-btn">Kiralık Mülk Arayın</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Yatırım Danışmanlığı -->
+        <article class="service-card" id="yatirim-danismanligi">
+          <div class="service-icon">📈</div>
+          <h3>Gayrimenkul Yatırım Danışmanlığı</h3>
+          <div class="service-content">
+            <p>
+              <strong>Aydın gayrimenkul yatırımı</strong> ve <strong
+                >Kuşadası emlak yatırımı</strong
+              > konularında profesyonel rehberlik. Hangi bölgelerin yatırım için
+              uygun olduğunu analiz ederek kazançlı yatırımlar yapmanızı sağlıyoruz.
+            </p>
+            <ul class="service-features">
+              <li>Pazar analizi ve yatırım fırsatları</li>
+              <li><strong>Kuşadası turizm yatırımı</strong> rehberliği</li>
+              <li><strong>Didim tatil köyü</strong> yatırım seçenekleri</li>
+              <li>Getiri oranı hesaplamaları</li>
+              <li>Risk analizi ve değerlendirmesi</li>
+              <li>Portföy çeşitlendirme önerileri</li>
+              <li>Vergi avantajları danışmanlığı</li>
+              <li>Uzun vadeli yatırım planlaması</li>
+            </ul>
+            <div class="service-cta">
+              <a href="/iletisim" class="cta-btn">Yatırım Danışmanlığı</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Mülk Değerleme -->
+        <article class="service-card" id="mulk-degerleme">
+          <div class="service-icon">🏷️</div>
+          <h3>Profesyonel Mülk Değerleme</h3>
+          <div class="service-content">
+            <p>
+              <strong>Aydın emlak değerleme</strong> hizmetlerimizle mülkünüzün gerçek
+              piyasa değerini öğrenin. Satış, kiralama veya yatırım kararlarınız
+              için doğru değerleme yapmaktayız.
+            </p>
+            <ul class="service-features">
+              <li>Piyasa analizi ve karşılaştırma</li>
+              <li>Teknik inceleme ve rapor</li>
+              <li>Konuma göre değer tespiti</li>
+              <li>Yasal durum kontrolü</li>
+              <li>Yenileme ve tadilat önerileri</li>
+              <li>Sigorta değeri belirleme</li>
+              <li>Vergi değeri hesaplama</li>
+              <li>Ekspertiz raporu hazırlama</li>
+            </ul>
+            <div class="service-cta">
+              <a href="/iletisim" class="cta-btn">Mülk Değerlendir</a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Location Based Services -->
+  <section class="location-services">
+    <div class="services-container">
+      <div class="section-header">
+        <h2>Bölgesel Gayrimenkul Hizmetleri</h2>
+        <p>Aydın ili ve çevresindeki tüm ilçelerde uzmanlık alanlarımız</p>
+      </div>
+
+      <div class="location-grid">
+        <!-- Aydın Merkez -->
+        <article class="location-card" id="aydin-merkez-emlak">
+          <div class="location-header">
+            <h3>🏛️ Aydın Merkez Gayrimenkul</h3>
+          </div>
+          <div class="location-content">
+            <p>
+              <strong>Aydın merkez emlak</strong> piyasasında lider konumdayız. Efeler,
+              Şehir merkezi ve çevre mahallerde geniş portföy.
+            </p>
+            <div class="location-services">
+              <span class="service-tag">Aydın Satılık Daire</span>
+              <span class="service-tag">Aydın Kiralık Ev</span>
+              <span class="service-tag">Ticari Mülk</span>
+              <span class="service-tag">Arsa Satışı</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Kuşadası -->
+        <article class="location-card" id="kusadasi-emlak">
+          <div class="location-header">
+            <h3>🏖️ Kuşadası Gayrimenkul</h3>
+          </div>
+          <div class="location-content">
+            <p>
+              <strong>Kuşadası emlak</strong> sektöründe turizm ve yatırım odaklı
+              hizmetler. Sahil şeridi ve merkez bölgelerde uzman danışmanlık.
+            </p>
+            <div class="location-services">
+              <span class="service-tag">Kuşadası Villa</span>
+              <span class="service-tag">Sahil Apartmanı</span>
+              <span class="service-tag">Turizm Yatırımı</span>
+              <span class="service-tag">Yazlık Ev</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Didim -->
+        <article class="location-card" id="didim-emlak">
+          <div class="location-header">
+            <h3>🌊 Didim Gayrimenkul</h3>
+          </div>
+          <div class="location-content">
+            <p>
+              <strong>Didim emlak</strong> piyasasında tatil köyleri ve sahil mülkleri
+              konusunda özelleşmiş hizmetler sunuyoruz.
+            </p>
+            <div class="location-services">
+              <span class="service-tag">Didim Satılık</span>
+              <span class="service-tag">Tatil Köyü</span>
+              <span class="service-tag">Sahil Evi</span>
+              <span class="service-tag">Yatırım Amaçlı</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Nazilli -->
+        <article class="location-card" id="nazilli-emlak">
+          <div class="location-header">
+            <h3>🏭 Nazilli Gayrimenkul</h3>
+          </div>
+          <div class="location-content">
+            <p>
+              <strong>Nazilli emlak</strong> sektöründe konut ve ticari mülk danışmanlığı.
+              Sanayi bölgesi yakını yatırım fırsatları.
+            </p>
+            <div class="location-services">
+              <span class="service-tag">Nazilli Konut</span>
+              <span class="service-tag">Ticari Mülk</span>
+              <span class="service-tag">Sanayi Arsası</span>
+              <span class="service-tag">İş Yeri</span>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="cta-section">
+    <div class="cta-container">
+      <div class="cta-content">
+        <h2>Gayrimenkul İhtiyaçlarınız İçin Hemen İletişime Geçin</h2>
+        <p>
+          Aydın, Kuşadası, Didim ve çevresinde gayrimenkul satış, kiralama ve
+          yatırım danışmanlığı için profesyonel ekibimizden destek alın. RE/MAX
+          Pasha güvencesiyle hayalinizdeki mülke ulaşın.
+        </p>
+        <div class="cta-buttons">
+          <a href="/iletisim" class="primary-btn">İletişime Geçin</a>
+          <a href="tel:+905551234567" class="secondary-btn">📞 Hemen Arayın</a>
+        </div>
+        <div class="cta-keywords">
+          <small>
+            <strong>Anahtar Kelimeler:</strong> Aydın emlak, Kuşadası gayrimenkul,
+            Didim satılık, emlak danışmanı, gayrimenkul yatırımı, Aydın kiralık daire,
+            RE/MAX Pasha
+          </small>
+        </div>
+      </div>
+    </div>
+  </section>
 </BaseLayout>
+
+<style>
+  .services-page {
+    font-family: "Montserrat", sans-serif;
+  }
+
+  /* Services Container */
+  .services-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: 4rem;
+  }
+
+  .section-header h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--dark-color);
+    margin: 0 0 1rem 0;
+  }
+
+  .section-header p {
+    font-size: 1.1rem;
+    color: #666;
+    margin: 0;
+  }
+
+  /* Main Services */
+  .main-services {
+    padding: 6rem 0;
+    background: white;
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+
+  .service-card {
+    background: white;
+    border-radius: 24px;
+    padding: 3rem;
+    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+    position: relative;
+  }
+
+  .service-card.featured {
+    border: 2px solid var(--primary-color);
+    transform: scale(1.02);
+  }
+
+  .service-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 25px 50px -15px rgba(0, 0, 0, 0.15);
+  }
+
+  .service-icon {
+    font-size: 3.5rem;
+    margin-bottom: 1.5rem;
+    display: block;
+  }
+
+  .service-card h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--dark-color);
+    margin: 0 0 1.5rem 0;
+  }
+
+  .service-content p {
+    color: #666;
+    line-height: 1.6;
+    margin: 0 0 1.5rem 0;
+  }
+
+  .service-features {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 2rem 0;
+  }
+
+  .service-features li {
+    padding: 0.5rem 0;
+    color: #666;
+    line-height: 1.5;
+    position: relative;
+    padding-left: 1.5rem;
+  }
+
+  .service-features li:before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: var(--primary-color);
+    font-weight: bold;
+  }
+
+  .service-features strong {
+    color: var(--primary-color);
+  }
+
+  .cta-btn {
+    display: inline-block;
+    background: var(--primary-color);
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+  }
+
+  .cta-btn:hover {
+    background: var(--secondary-color);
+    transform: translateY(-2px);
+  }
+
+  /* Location Services */
+  .location-services {
+    padding: 6rem 0;
+    background: #f8fafc;
+  }
+
+  .location-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+  }
+
+  .location-card {
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+  }
+
+  .location-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.15);
+  }
+
+  .location-header {
+    background: linear-gradient(
+      135deg,
+      var(--primary-color),
+      var(--secondary-color)
+    );
+    color: white;
+    padding: 2rem;
+    text-align: center;
+  }
+
+  .location-header h3 {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin: 0;
+  }
+
+  .location-content {
+    padding: 2rem;
+  }
+
+  .location-content p {
+    color: #666;
+    line-height: 1.6;
+    margin: 0 0 1.5rem 0;
+  }
+
+  .location-services {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .service-tag {
+    background: #f1f5f9;
+    color: var(--primary-color);
+    padding: 0.5rem 1rem;
+    border-radius: 1rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+  }
+
+  /* CTA Section */
+  .cta-section {
+    padding: 6rem 0;
+    background: linear-gradient(
+      135deg,
+      var(--primary-color),
+      var(--secondary-color)
+    );
+    color: white;
+  }
+
+  .cta-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    text-align: center;
+  }
+
+  .cta-content h2 {
+    font-size: 2.5rem;
+    font-weight: 600;
+    margin: 0 0 1.5rem 0;
+  }
+
+  .cta-content p {
+    font-size: 1.2rem;
+    margin: 0 0 3rem 0;
+    opacity: 0.9;
+    line-height: 1.6;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .cta-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
+  }
+
+  .primary-btn,
+  .secondary-btn {
+    padding: 1.2rem 2.5rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    font-size: 1.1rem;
+  }
+
+  .primary-btn {
+    background: white;
+    color: var(--primary-color);
+  }
+
+  .secondary-btn {
+    background: transparent;
+    color: white;
+    border: 2px solid white;
+  }
+
+  .primary-btn:hover,
+  .secondary-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px -10px rgba(0, 0, 0, 0.3);
+  }
+
+  .secondary-btn:hover {
+    background: white;
+    color: var(--primary-color);
+  }
+
+  .cta-keywords {
+    max-width: 600px;
+    margin: 0 auto;
+    opacity: 0.8;
+    line-height: 1.4;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .hero-section {
+      padding: 6rem 0 4rem;
+    }
+
+    .services-container {
+      padding: 0 1rem;
+    }
+
+    .services-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .location-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .hero-keywords {
+      justify-content: center;
+    }
+
+    .cta-buttons {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .hero-container {
+      padding: 0 1rem;
+    }
+
+    .service-card {
+      padding: 2rem;
+    }
+
+    .location-content {
+      padding: 1.5rem;
+    }
+
+    .cta-content h2 {
+      font-size: 2rem;
+    }
+  }
+  h3 {
+    color: white !important;
+  }
+  h2 {
+    color: white !important;
+  }
+</style>

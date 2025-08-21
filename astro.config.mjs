@@ -5,12 +5,12 @@ import robotsTxt from 'astro-robots-txt';
 // import tailwind from "@astrojs/tailwind";
 
 export default defineConfig({
-  site: 'https://www.ornekdoman.com', // sitemap için şart
+  site: 'https://belkissensan.com.tr', // sitemap için şart
   integrations: [
     sitemap(),
     robotsTxt({
       policy: [{ userAgent: '*', allow: '/' }],
-      sitemap: 'https://www.ornekdoman.com/sitemap-index.xml',
+      sitemap: 'https://belkissensan.com.tr/sitemap-index.xml',
     }),
     // tailwind(),
   ],

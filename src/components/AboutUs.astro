@@ -1,0 +1,658 @@
+---
+interface Props {
+  title?: string;
+  subtitle?: string;
+  description?: string;
+  stats?: Array<{
+    number: string;
+    label: string;
+    suffix?: string;
+  }>;
+  features?: Array<{
+    title: string;
+    description: string;
+    icon: string;
+  }>;
+}
+
+const {
+  title = "Belkıs Şensan Kimdir?",
+  subtitle = "Remax Pasha Aydın Gayrimenkul Danışmanı",
+  description = `
+  <p>Sonuca hedeflediğiniz sürede ulaşmanız için planlı ve iyi analiz edilmiş bir süreç, benim danışmanlığım ile keyifli ve tecrübe edilmiş bir deneyim olacaktır. İletişim kurmanız yeterli…</p>
+  <p>1986 yılında Aydın’ın Nazilli ilçesinde doğdum. Re/Max ile tanışmadan önce uzun yıllar gıda ve kafe sektöründe işletmelerim oldu. Butik bir gıda işletmesi ile başladığım ticari yolculuğum, kısa sürede Aydın Nazilli’de sahibi olduğum Sarp Catering Yemek Fabrikası ile devam etti. Bu dönemde, ilgili bakanlık tarafından Ege Bölgesi Genç Kadın Girişimcisi seçilerek Cumhurbaşkanlığı tebriği ile onurlandırıldım. Aynı süreçte İzmir’de sahibi olduğum kafe işletmesi de ticari alanda başarıyla yönettiğim işlerden biri olarak referanslarım arasındadır.</p>
+  <p>Re/Max Pasha ailesi ile tanışmam 2022 yılına denk gelir. Eski sektörümü hakkıyla devrederek yaşam standartlarımı yükseltmek adına Kuşadası’na yerleşme kararı aldım. Çünkü iyi iş, en yüksekteyken görevini tamamlamalı ve elde edilen tecrübelerle yeni ufuklara yelken açılmalıdır. Bu bakış açısıyla, bugün emeğim, çabam ve eğitimim sayesinde kısa sürede birçok başarıya ulaştım. Re/Max’ın kurumsallığını ve güvencesini de yanıma alarak gayrimenkul sektöründe hizmet vermekteyim.</p>
+`,
+  stats = [
+    { number: "500", label: "Mutlu Müşteri", suffix: "+" },
+    { number: "1000", label: "Satış", suffix: "+" },
+    { number: "10", label: "Yıl Deneyim", suffix: "+" },
+    { number: "24", label: "Saat Destek", suffix: "/7" },
+  ],
+  features = [
+    {
+      title: "Profesyonel Danışmanlık",
+      description: "Alanında uzman ekibimizle size en uygun mülkü buluyoruz.",
+      icon: "🏆",
+    },
+    {
+      title: "Güvenli İşlemler",
+      description: "Tüm süreçlerinizi yasal güvence altında tamamlıyoruz.",
+      icon: "🔐",
+    },
+    {
+      title: "Hızlı Çözümler",
+      description:
+        "Zamanınıza değer veriyor, hızlı ve etkili sonuçlar sunuyoruz.",
+      icon: "⚡",
+    },
+  ],
+} = Astro.props as Props;
+---
+
+<section class="about-section" aria-labelledby="about-title">
+  <div class="about-container">
+    <!-- Floating Elements -->
+    <div class="floating-shapes" aria-hidden="true">
+      <div class="shape shape-1"></div>
+      <div class="shape shape-2"></div>
+      <div class="shape shape-3"></div>
+    </div>
+
+    <!-- Header -->
+    <div class="about-header">
+      <div class="header-content">
+        <span class="subtitle">{subtitle}</span>
+        <h2 id="about-title" class="section-title">{title}</h2>
+        <div class="title-decoration"></div>
+      </div>
+      <div class="header-visual">
+        <div class="visual-card">
+          <div class="card-content">
+            <div class="video-container">
+              <iframe
+                src="https://www.youtube.com/embed/g8kk8f-g7M0"
+                title="Belkıs Şensan Tanıtım Videosu"
+                frameborder="0"
+                allow="accelerometer;  clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen
+                loading="lazy"
+              >
+              </iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Content Grid -->
+    <div class="about-grid">
+      <!-- Description -->
+      <div class="description-card">
+        <div class="description-text" set:html={description} />
+        <div class="description-accent"></div>
+      </div>
+
+      <!-- Stats -->
+      <div class="stats-container">
+        <div class="stats-grid">
+          {
+            stats.map((stat) => (
+              <div class="stat-item">
+                <div class="stat-number">
+                  <span class="number" data-target={stat.number}>
+                    {stat.number}
+                  </span>
+                  <span class="suffix">{stat.suffix}</span>
+                </div>
+                <div class="stat-label">{stat.label}</div>
+                <div class="stat-bar" />
+              </div>
+            ))
+          }
+        </div>
+      </div>
+
+      <!-- Features -->
+      <div class="features-container">
+        <div class="features-grid">
+          {
+            features.map((feature, index) => (
+              <div class="feature-card" style={`--delay: ${index * 0.1}s`}>
+                <div class="feature-icon">{feature.icon}</div>
+                <h3 class="feature-title">{feature.title}</h3>
+                <p class="feature-description">{feature.description}</p>
+                <div class="feature-hover-effect" />
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom CTA -->
+    <div class="about-cta">
+      <div class="cta-content">
+        <h3 style="color: white !important;">Birlikte Çalışalım</h3>
+        <p>Gayrimenkul ihtiyaçlarınız için profesyonel destek alın</p>
+        <a href="/iletisim" class="cta-button">
+          <span>İletişime Geçin</span>
+          <div class="button-arrow">→</div>
+        </a>
+      </div>
+      <div class="cta-visual">
+        <div class="cta-pattern"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .about-section {
+    position: relative;
+    padding: 6rem 0;
+    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 50%, #e2e8f0 100%);
+    overflow: hidden;
+  }
+
+  .about-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    position: relative;
+  }
+
+  /* Floating Shapes */
+  .floating-shapes {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .shape {
+    position: absolute;
+    border-radius: 50%;
+    background: linear-gradient(
+      135deg,
+      var(--primary-color),
+      var(--secondary-color)
+    );
+    opacity: 0.08;
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .shape-1 {
+    width: 120px;
+    height: 120px;
+    top: 10%;
+    right: 10%;
+    animation-delay: 0s;
+  }
+
+  .shape-2 {
+    width: 80px;
+    height: 80px;
+    bottom: 20%;
+    left: 5%;
+    animation-delay: -2s;
+  }
+
+  .shape-3 {
+    width: 60px;
+    height: 60px;
+    top: 60%;
+    right: 20%;
+    animation-delay: -4s;
+  }
+
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0px) rotate(0deg);
+    }
+    50% {
+      transform: translateY(-20px) rotate(180deg);
+    }
+  }
+
+  /* Header */
+  .about-header {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 4rem;
+    align-items: center;
+    margin-bottom: 4rem;
+    position: relative;
+    z-index: 2;
+  }
+
+  .header-content {
+    position: relative;
+  }
+
+  .subtitle {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background: var(--primary-color);
+    color: white;
+    font-size: 0.9rem;
+    font-weight: 600;
+    border-radius: 2rem;
+    letter-spacing: 0.5px;
+    margin-bottom: 1rem;
+  }
+
+  .section-title {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 700;
+    margin: 0;
+    background: linear-gradient(
+      135deg,
+      var(--dark-color),
+      var(--primary-color)
+    );
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    line-height: 1.1;
+  }
+
+  .title-decoration {
+    width: 60px;
+    height: 4px;
+    background: linear-gradient(
+      90deg,
+      var(--primary-color),
+      var(--secondary-color)
+    );
+    margin-top: 1rem;
+    border-radius: 2px;
+    position: relative;
+  }
+
+  .title-decoration::after {
+    content: "";
+    position: absolute;
+    right: -20px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 12px;
+    height: 12px;
+    background: var(--secondary-color);
+    border-radius: 50%;
+  }
+
+  .header-visual {
+    position: relative;
+  }
+
+  .visual-card {
+    position: relative;
+  }
+
+  .card-content {
+    background: white;
+    border-radius: 20px;
+    padding: 1.5rem;
+    box-shadow:
+      0 20px 40px -20px rgba(0, 0, 0, 0.15),
+      0 0 0 1px rgba(255, 255, 255, 0.5);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .video-container {
+    position: relative;
+    width: 590px;
+    height: 329px;
+    border-radius: 16px;
+    overflow: hidden;
+    background: #000;
+  }
+
+  .video-container iframe {
+    width: 590px;
+    height: 329px;
+    border: none;
+    border-radius: 16px;
+  }
+
+  .video-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      135deg,
+      var(--primary-color),
+      var(--secondary-color)
+    );
+    opacity: 0.1;
+    mix-blend-mode: multiply;
+  }
+
+  /* Content Grid */
+  .about-grid {
+    display: grid;
+    gap: 3rem;
+    position: relative;
+    z-index: 2;
+  }
+
+  /* Description */
+  .description-card {
+    position: relative;
+    background: white;
+    padding: 3rem;
+    border-radius: 24px;
+    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+  }
+
+  .description-text {
+    font-size: 1rem;
+    line-height: 1.3;
+    color: var(--dark-color);
+    margin: 0;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Stats */
+  .stats-container {
+    margin: 2rem 0;
+  }
+
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+  }
+
+  .stat-item {
+    text-align: center;
+    position: relative;
+    padding: 2rem 1rem;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 8px 25px -8px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    overflow: hidden;
+  }
+
+  .stat-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px -10px rgba(0, 0, 0, 0.15);
+  }
+
+  .stat-number {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+  }
+
+  .suffix {
+    font-size: 1.5rem;
+    margin-left: 0.2rem;
+    color: var(--secondary-color);
+  }
+
+  .stat-label {
+    font-size: 1rem;
+    color: var(--dark-color);
+    font-weight: 500;
+    margin-bottom: 1rem;
+  }
+
+  .stat-bar {
+    width: 40px;
+    height: 3px;
+    background: linear-gradient(
+      90deg,
+      var(--primary-color),
+      var(--secondary-color)
+    );
+    margin: 0 auto;
+    border-radius: 2px;
+    animation: fillBar 2s ease-out forwards;
+    transform: scaleX(0);
+    transform-origin: left;
+  }
+
+  @keyframes fillBar {
+    to {
+      transform: scaleX(1);
+    }
+  }
+
+  /* Features */
+  .features-container {
+    margin: 3rem 0;
+  }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+
+  .feature-card {
+    position: relative;
+    background: white;
+    padding: 2.5rem;
+    border-radius: 20px;
+    box-shadow: 0 8px 25px -8px rgba(0, 0, 0, 0.1);
+    transition: all 0.4s ease;
+    overflow: hidden;
+    animation: slideUp 0.6s ease-out forwards;
+    animation-delay: var(--delay);
+    transform: translateY(20px);
+    opacity: 0;
+  }
+
+  @keyframes slideUp {
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  .feature-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.15);
+  }
+
+  .feature-icon {
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+    display: block;
+  }
+
+  .feature-title {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--dark-color);
+    margin: 0 0 1rem 0;
+  }
+
+  .feature-description {
+    color: #666;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .feature-hover-effect {
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.4),
+      transparent
+    );
+    transition: left 0.5s ease;
+  }
+
+  .feature-card:hover .feature-hover-effect {
+    left: 100%;
+  }
+
+  /* CTA */
+  .about-cta {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 3rem;
+    align-items: center;
+    background: linear-gradient(
+      135deg,
+      var(--primary-color),
+      var(--secondary-color)
+    );
+    padding: 3rem;
+    border-radius: 24px;
+    color: white;
+    margin-top: 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-content h3 {
+    font-size: 2rem;
+    margin: 0 0 1rem 0;
+    font-weight: 600;
+  }
+
+  .cta-content p {
+    font-size: 1.1rem;
+    margin: 0 0 2rem 0;
+    opacity: 0.9;
+  }
+
+  .cta-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
+    background: white;
+    color: var(--primary-color);
+    padding: 1rem 2rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 25px -8px rgba(0, 0, 0, 0.2);
+  }
+
+  .cta-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 35px -10px rgba(0, 0, 0, 0.25);
+  }
+
+  .button-arrow {
+    transition: transform 0.3s ease;
+  }
+
+  .cta-button:hover .button-arrow {
+    transform: translateX(5px);
+  }
+
+  .cta-pattern {
+    width: 120px;
+    height: 120px;
+    background: repeating-linear-gradient(
+      45deg,
+      rgba(255, 255, 255, 0.1),
+      rgba(255, 255, 255, 0.1) 10px,
+      transparent 10px,
+      transparent 20px
+    );
+    border-radius: 50%;
+    animation: rotate 20s linear infinite;
+  }
+
+  @keyframes rotate {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .about-section {
+      padding: 4rem 0;
+    }
+
+    .about-container {
+      padding: 0 1rem;
+    }
+
+    .about-header {
+      grid-template-columns: 1fr;
+      text-align: center;
+      gap: 2rem;
+    }
+
+    .visual-card {
+      transform: none;
+    }
+
+    .video-container {
+      width: 330px;
+      height: 182px;
+      margin: 0 auto;
+    }
+
+    .video-container iframe {
+      width: 330px;
+      height: 182px;
+      border: none;
+      border-radius: 16px;
+    }
+
+    .description-card {
+      padding: 2rem;
+    }
+
+    .stats-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .features-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .about-cta {
+      grid-template-columns: 1fr;
+      text-align: center;
+      padding: 2rem;
+    }
+
+    .cta-pattern {
+      margin: 0 auto;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .stats-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .section-title {
+      font-size: 2.5rem;
+    }
+
+    .video-container {
+      width: 330px;
+      height: 182px;
+    }
+  }
+</style>

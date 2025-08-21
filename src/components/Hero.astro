@@ -1,24 +1,148 @@
 ---
 interface Props {
-  title: string;
-  text: string;
-  ctaText: string;
-  ctaLink: string;
+  title?: string;
+  text?: string;
+  ctaText?: string;
+  ctaLink?: string;
   image?: string;
+  imageAlt?: string;
+  role?: string;
 }
-const { title, text, ctaText, ctaLink, image } = Astro.props as Props;
+const {
+  title = "Belkıs Şensan",
+  role = "Remax Pasha Aydın Gayrimenkul Danışmanı",
+  text = "Aydın, Kuşadası ve Didim'de güvenilir gayrimenkul danışmanınız.",
+  ctaText = "İletişime Geç",
+  ctaLink = "tel:+905555555555",
+  image = "assets/img/belkis-sensan.png",
+  imageAlt = "Remax Pasha Aydın Belkis Şensan",
+} = Astro.props as Props;
 ---
-<section class="hero">
-  <div class="container hero-grid">
+
+<section class="hero-sections" aria-labelledby="hero-title">
+  <div class="hero-container">
     <div class="hero-content">
-      <h1>{title}</h1>
-      <p>{text}</p>
-      <a href={ctaLink} class="btn-primary">{ctaText}</a>
-    </div>
-    {image && (
-      <div class="hero-image">
-        <img src={image} alt="" />
+      <div class="hero-subtitle">RE/MAX Pasha Aydın</div>
+      <h1 id="hero-title" class="hero-title hero-title--highlight">
+        {title}
+      </h1>
+      <p class="hero-description">{text}</p>
+
+      <div class="hero-keywords">
+        <span class="keyword">🏠 Satış Uzmanı</span>
+        <span class="keyword">🔑 Kiralama Danışmanı</span>
+        <span class="keyword">⭐ Yatırım Hizmeti</span>
       </div>
-    )}
+
+      {
+        ctaText && (
+          <a href={ctaLink} class="btn btn-primary hero-cta">
+            {ctaText}
+          </a>
+        )
+      }
+    </div>
+
+    {
+      image && (
+        <div class="hero-image">
+          <img
+            src={image}
+            loading="eager"
+            width="600"
+            height="400"
+            fetchpriority="high"
+            alt={imageAlt}
+          />
+        </div>
+      )
+    }
+  </div>
+
+  <!-- Hero Visual Elements -->
+  <div class="hero-visual">
+    <div class="hero-shapes">
+      <div class="shape shape-1"></div>
+      <div class="shape shape-2"></div>
+      <div class="shape shape-3"></div>
+    </div>
   </div>
 </section>
+
+<style>
+  .hero-sections {
+    padding: 6rem 0 0;
+    background-color: white;
+  }
+  .hero-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-xl);
+    align-items: center;
+  }
+
+  @media (min-width: 768px) {
+    .hero-container {
+      grid-template-columns: 1fr 400px;
+      gap: var(--spacing-2xl);
+    }
+  }
+
+  .hero-content {
+    text-align: center;
+  }
+
+  .hero-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    order: 2;
+  }
+
+  .hero-image img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .hero-cta {
+    margin-top: var(--spacing-xl);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  /* Mobilde fotoğraf üstte, metinler altta */
+  @media (max-width: 767px) {
+    .hero-container {
+      grid-template-columns: 1fr;
+      margin-top: 3rem;
+      text-align: center;
+    }
+    .hero-sections {
+      padding: 2rem 0 0;
+    }
+    .hero-content {
+      text-align: center;
+      order: 2;
+    }
+
+    .hero-image {
+      order: 1;
+    }
+
+    .hero-image img {
+      max-width: 280px;
+    }
+  }
+
+  /* Desktop'ta metinler solda, fotoğraf sağda */
+  @media (min-width: 768px) {
+    .hero-content {
+      order: 1;
+    }
+
+    .hero-image {
+      order: 2;
+    }
+  }
+</style>
